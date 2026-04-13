@@ -17,7 +17,15 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={outfit.className}>
-      <body className="min-h-[100dvh]">{children}</body>
+      <body className="min-h-[100dvh]">
+        {children}
+        <script
+          src="https://widgets.leadconnectorhq.com/loader.js"
+          data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+          data-widget-id="69dccfc2d69ee87e9ecd0333"
+          async
+        />
+      </body>
     </html>
   );
 }
