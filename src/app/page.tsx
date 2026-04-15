@@ -538,15 +538,15 @@ function Features() {
                     Monthly Owner Report
                   </p>
                   <p className="text-[15px] font-bold text-stone-900 mt-1 tracking-tight">
-                    Halloran Portfolio
+                    Chen Investment Properties
                   </p>
                   <p className="text-[13px] text-stone-400 mt-0.5">
-                    1847 J Street (4 units) and 2215 Capitol Ave (6 units)
+                    12 properties in Sacramento, CA
                   </p>
                 </div>
                 <div className="text-right">
                   <p className="text-[13px] font-semibold text-stone-700">March 2026</p>
-                  <p className="text-[14px] text-stone-400 font-mono mt-0.5">10 units total</p>
+                  <p className="text-[14px] text-stone-400 font-mono mt-0.5">12 units total</p>
                 </div>
               </div>
             </div>
@@ -557,15 +557,14 @@ function Features() {
               {/* Portfolio KPIs */}
               <div className="px-7 py-4 border-b border-stone-100 grid grid-cols-4 gap-3">
                 {[
-                  { label: "Occupancy", value: "91%", prev: "83.3%", good: true },
-                  { label: "Collection", value: "97.2%", prev: "94.8%", good: true },
-                  { label: "NOI", value: "$14,820", prev: "$14,375", good: true },
-                  { label: "Maint/unit", value: "$142", prev: "$173", good: true },
+                  { label: "Rent collected", value: "$19,700" },
+                  { label: "Total expenses", value: "$9,588" },
+                  { label: "NOI", value: "$10,112" },
+                  { label: "Occupancy", value: "10/12" },
                 ].map((m) => (
                   <div key={m.label} className="text-center">
                     <p className="text-[13px] text-stone-400 uppercase tracking-wider">{m.label}</p>
                     <p className="text-[15px] font-bold font-mono text-stone-900 mt-0.5">{m.value}</p>
-                    <p className="text-[13px] font-mono text-emerald-500 mt-0.5">vs {m.prev}</p>
                   </div>
                 ))}
               </div>
@@ -575,212 +574,198 @@ function Features() {
                 <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-3">
                   Executive Summary
                 </p>
-                <p className="text-[14px] text-stone-600 leading-relaxed mb-2">
-                  Your properties maintained <span className="font-semibold text-stone-800">91% occupancy</span> this
-                  month across 10 managed units. The vacancy at 2215 Capitol Ave Unit 3 has been
-                  actively marketed since March 8, generating 14 inquiries and two qualified showings.
-                  We expect a signed lease by mid-April.
-                </p>
                 <p className="text-[14px] text-stone-600 leading-relaxed">
-                  Net operating income increased <span className="font-semibold text-stone-800">3.1% to $14,820</span>,
-                  driven by improved collection rates and lower maintenance spend following the HVAC
-                  overhaul at 2215 Capitol Ave.
+                  Your portfolio of 12 properties generated <span className="font-semibold text-stone-800">$19,700</span> in
+                  collected rent this month against <span className="font-semibold text-stone-800">$9,588</span> in
+                  operating expenses, resulting in <span className="font-semibold text-stone-800">$10,112</span> in
+                  net operating income. 10 of 12 units are currently occupied. Two vacancies are generating a combined
+                  <span className="font-semibold text-stone-800"> $3,550/month</span> in lost revenue. One tenant has a
+                  partial payment outstanding of $800.
                 </p>
               </div>
 
-              {/* Property-by-Property Breakdown */}
+              {/* Revenue & Rent Collection */}
               <div className="px-7 py-5 border-b border-stone-100">
                 <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-3">
-                  Property Breakdown
+                  Revenue & Rent Collection
                 </p>
-
-                {/* Property 1 */}
-                <div className="mb-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <p className="text-[14px] font-semibold text-stone-800">1847 J Street — Fourplex</p>
-                    <span className="text-[13px] font-mono text-emerald-500">100% occupied</span>
-                  </div>
-                  <div className="bg-stone-50 rounded-lg overflow-hidden">
-                    <div className="grid grid-cols-[1fr_2fr_1fr_1fr] gap-2 px-3 py-1.5 text-[14px] text-stone-400 uppercase tracking-wider font-semibold border-b border-stone-100">
-                      <span>Unit</span><span>Tenant</span><span>Rent</span><span>Lease ends</span>
-                    </div>
-                    {[
-                      { unit: "A", tenant: "R. Castillo", rent: "$1,850", end: "Nov 2026" },
-                      { unit: "B", tenant: "M. Torres", rent: "$1,850", end: "Pending" },
-                      { unit: "C", tenant: "J. Whitmore", rent: "$1,750", end: "Aug 2026" },
-                      { unit: "D", tenant: "K. Pham", rent: "$1,800", end: "May 2026" },
-                    ].map((u) => (
-                      <div key={u.unit} className="grid grid-cols-[1fr_2fr_1fr_1fr] gap-2 px-3 py-2 text-[13px] border-b border-stone-100/60 last:border-0">
-                        <span className="font-mono text-stone-500">{u.unit}</span>
-                        <span className="text-stone-700">{u.tenant}</span>
-                        <span className="font-mono text-stone-700">{u.rent}</span>
-                        <span className={`font-mono ${u.end === "May 2026" ? "text-amber-600" : "text-stone-400"}`}>{u.end}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Property 2 */}
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <p className="text-[14px] font-semibold text-stone-800">2215 Capitol Ave — 6 Units</p>
-                    <span className="text-[13px] font-mono text-amber-500">83% occupied (1 vacant)</span>
-                  </div>
-                  <div className="bg-stone-50 rounded-lg overflow-hidden">
-                    <div className="grid grid-cols-[1fr_2fr_1fr_1fr] gap-2 px-3 py-1.5 text-[14px] text-stone-400 uppercase tracking-wider font-semibold border-b border-stone-100">
-                      <span>Unit</span><span>Tenant</span><span>Rent</span><span>Lease ends</span>
-                    </div>
-                    {[
-                      { unit: "1", tenant: "A. Brennan", rent: "$1,475", end: "Jun 2026" },
-                      { unit: "2", tenant: "T. Nguyen", rent: "$1,500", end: "Sep 2026" },
-                      { unit: "3", tenant: "— Vacant —", rent: "$1,475", end: "Listed Mar 8" },
-                      { unit: "4", tenant: "S. Delgado", rent: "$1,450", end: "Dec 2026" },
-                      { unit: "5", tenant: "M. Okafor", rent: "$1,500", end: "Jun 2026" },
-                      { unit: "6", tenant: "L. Petrovic", rent: "$1,525", end: "Oct 2026" },
-                    ].map((u) => (
-                      <div key={u.unit} className={`grid grid-cols-[1fr_2fr_1fr_1fr] gap-2 px-3 py-2 text-[13px] border-b border-stone-100/60 last:border-0 ${u.tenant.includes("Vacant") ? "bg-amber-50/50" : ""}`}>
-                        <span className="font-mono text-stone-500">{u.unit}</span>
-                        <span className={u.tenant.includes("Vacant") ? "text-amber-600 font-medium" : "text-stone-700"}>{u.tenant}</span>
-                        <span className="font-mono text-stone-700">{u.rent}</span>
-                        <span className={`font-mono ${u.tenant.includes("Vacant") ? "text-amber-500" : u.end === "Jun 2026" ? "text-amber-600" : "text-stone-400"}`}>{u.end}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Delinquency */}
-              <div className="px-7 py-5 border-b border-stone-100">
-                <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-3">
-                  Delinquency Report
-                </p>
-                <div className="bg-stone-50 rounded-lg overflow-hidden">
-                  <div className="grid grid-cols-[2fr_2fr_1fr_1fr] gap-2 px-3 py-1.5 text-[14px] text-stone-400 uppercase tracking-wider font-semibold border-b border-stone-100">
-                    <span>Tenant</span><span>Property</span><span>Owed</span><span>Days late</span>
+                <div className="bg-stone-50 rounded-lg overflow-hidden mb-3">
+                  <div className="grid grid-cols-[2fr_1fr_1fr] gap-2 px-3 py-1.5 text-[14px] text-stone-400 uppercase tracking-wider font-semibold border-b border-stone-100">
+                    <span>Property</span><span>Expected</span><span className="text-right">Collected</span>
                   </div>
                   {[
-                    { tenant: "K. Pham", prop: "1847 J St, Unit D", owed: "$1,800", days: "12", resolved: true },
-                    { tenant: "A. Brennan", prop: "2215 Capitol, Unit 1", owed: "$1,475", days: "3", resolved: false },
-                  ].map((d) => (
-                    <div key={d.tenant} className="grid grid-cols-[2fr_2fr_1fr_1fr] gap-2 px-3 py-2 text-[13px] border-b border-stone-100/60 last:border-0">
-                      <span className="text-stone-700">{d.tenant}</span>
-                      <span className="text-stone-500">{d.prop}</span>
-                      <span className="font-mono text-stone-700">{d.owed}</span>
-                      <span className="font-mono">
-                        {d.resolved
-                          ? <span className="text-emerald-500">Resolved</span>
-                          : <span className="text-amber-600">{d.days} days</span>
-                        }
+                    { prop: "2847 Freeport", expected: "$2,150", collected: "$2,150", status: "full" },
+                    { prop: "1523 T St", expected: "$1,750", collected: "$1,750", status: "full" },
+                    { prop: "4401 Marconi", expected: "$2,400", collected: "$2,400", status: "full" },
+                    { prop: "901 Alhambra A", expected: "$1,650", collected: "$1,650", status: "full" },
+                    { prop: "901 Alhambra B", expected: "$1,600", collected: "$800", status: "partial" },
+                    { prop: "3312 Stockton", expected: "$1,950", collected: "$1,950", status: "full" },
+                    { prop: "7720 College", expected: "$2,200", collected: "$2,200", status: "full" },
+                    { prop: "1088 Fulton", expected: "$1,850", collected: "—", status: "vacant" },
+                    { prop: "2205 Northgate", expected: "$2,650", collected: "$2,650", status: "full" },
+                    { prop: "5540 Sky Pkwy", expected: "$2,100", collected: "$2,100", status: "full" },
+                    { prop: "642 Riverside", expected: "$1,700", collected: "—", status: "vacant" },
+                    { prop: "4015 El Camino", expected: "$2,050", collected: "$2,050", status: "full" },
+                  ].map((r) => (
+                    <div key={r.prop} className={`grid grid-cols-[2fr_1fr_1fr] gap-2 px-3 py-2 text-[13px] border-b border-stone-100/60 last:border-0 ${r.status === "vacant" ? "bg-red-50/40" : r.status === "partial" ? "bg-amber-50/50" : ""}`}>
+                      <span className="text-stone-700">{r.prop}</span>
+                      <span className="font-mono text-stone-400">{r.expected}</span>
+                      <span className={`font-mono text-right ${r.status === "vacant" ? "text-red-500 font-medium" : r.status === "partial" ? "text-amber-600 font-medium" : "text-stone-700"}`}>
+                        {r.status === "full" ? r.collected : r.status === "partial" ? `${r.collected} (partial)` : "Vacant"}
                       </span>
                     </div>
                   ))}
                 </div>
-                <p className="text-[14px] text-stone-400 mt-2">
-                  Collection rate: <span className="font-mono font-semibold text-stone-700">97.2%</span> — up from 94.8% in February
+                <p className="text-[14px] text-stone-400">
+                  Charged <span className="font-mono font-semibold text-stone-700">$24,050</span>, collected <span className="font-mono font-semibold text-stone-700">$19,700</span> — <span className="font-mono font-semibold text-stone-700">81.9%</span> collection rate. Shortfall: two vacancies ($3,550) and T. Reeves&apos; partial payment ($800).
                 </p>
               </div>
 
-              {/* Maintenance / Work Orders */}
+              {/* Occupancy & Vacancy */}
               <div className="px-7 py-5 border-b border-stone-100">
                 <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-3">
-                  Maintenance Summary
+                  Occupancy & Vacancy
                 </p>
-                <div className="grid grid-cols-3 gap-3 mb-3">
+                <div className="grid grid-cols-4 gap-2 mb-3">
                   {[
-                    { label: "Completed", value: "7", color: "text-emerald-600" },
-                    { label: "In progress", value: "2", color: "text-amber-600" },
-                    { label: "Pending", value: "1", color: "text-stone-500" },
-                  ].map((s) => (
-                    <div key={s.label} className="bg-stone-50 rounded-lg p-2.5 text-center">
-                      <p className={`text-[15px] font-bold font-mono ${s.color}`}>{s.value}</p>
-                      <p className="text-[13px] text-stone-400 mt-0.5">{s.label}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className="space-y-2">
-                  {[
-                    { desc: "HVAC overhaul — 2215 Capitol Ave", cost: "$2,340", status: "Completed", statusColor: "text-emerald-500" },
-                    { desc: "Garbage disposal replacement — 1847 J, Unit C", cost: "$185", status: "Completed", statusColor: "text-emerald-500" },
-                    { desc: "Exterior paint touch-up — 1847 J St", cost: "$620", status: "In progress", statusColor: "text-amber-500" },
-                    { desc: "Leaking faucet — 2215 Capitol, Unit 5", cost: "Est. $90", status: "Pending", statusColor: "text-stone-400" },
-                  ].map((w) => (
-                    <div key={w.desc} className="flex items-center justify-between text-[13px] py-1.5">
-                      <span className="text-stone-600 flex-1">{w.desc}</span>
-                      <span className="font-mono text-stone-500 mx-3">{w.cost}</span>
-                      <span className={`font-medium ${w.statusColor}`}>{w.status}</span>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-[14px] text-stone-400 mt-3">
-                  Total spend: <span className="font-mono font-semibold text-stone-700">$1,426</span> ($142/unit) — down 18% from February
-                </p>
-              </div>
-
-              {/* Lease Expirations */}
-              <div className="px-7 py-5 border-b border-stone-100">
-                <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-3">
-                  Upcoming Lease Expirations
-                </p>
-                <div className="grid grid-cols-3 gap-3 mb-3">
-                  {[
-                    { window: "30 days", count: "1", units: "1847 J, Unit D" },
-                    { window: "60 days", count: "2", units: "2215 Capitol, Units 1 & 5" },
-                    { window: "90 days", count: "1", units: "1847 J, Unit C" },
-                  ].map((e) => (
-                    <div key={e.window} className="bg-stone-50 rounded-lg p-2.5">
-                      <p className="text-[13px] text-stone-400 font-medium">{e.window}</p>
-                      <p className="text-[14px] font-bold font-mono text-stone-900">{e.count}</p>
-                      <p className="text-[13px] text-stone-400 mt-0.5">{e.units}</p>
+                    { name: "2847 Freeport", vacant: false },
+                    { name: "1523 T St", vacant: false },
+                    { name: "4401 Marconi", vacant: false },
+                    { name: "901 Alham A", vacant: false },
+                    { name: "901 Alham B", vacant: false },
+                    { name: "3312 Stockton", vacant: false },
+                    { name: "7720 College", vacant: false },
+                    { name: "1088 Fulton", vacant: true, days: "52 days" },
+                    { name: "2205 Northgate", vacant: false },
+                    { name: "5540 Sky Pkwy", vacant: false },
+                    { name: "642 Riverside", vacant: true, days: "18 days" },
+                    { name: "4015 El Camino", vacant: false },
+                  ].map((u) => (
+                    <div key={u.name} className={`rounded-lg px-2 py-1.5 text-center ${u.vacant ? "bg-red-50 border border-red-200" : "bg-stone-50 border border-stone-100"}`}>
+                      <p className={`text-[13px] font-semibold ${u.vacant ? "text-red-600" : "text-stone-700"}`}>{u.name}</p>
+                      {u.vacant && <p className="text-[13px] font-mono text-red-500 mt-0.5">{u.days}</p>}
                     </div>
                   ))}
                 </div>
                 <p className="text-[14px] text-stone-400">
-                  Renewal notice sent to K. Pham (Unit D, May 31) with proposed 2.8% increase.
-                  Awaiting response.
+                  10 of 12 occupied (<span className="font-mono font-semibold text-stone-700">83% occupancy</span>). 1088 Fulton Ave vacant 52 days at $1,850/mo; make-ready complete ($1,640), listing active. 642 Riverside Blvd vacant 18 days at $1,700/mo; $175 advertising spent.
                 </p>
               </div>
 
-              {/* Recommendations */}
+              {/* Upcoming Lease Expirations */}
               <div className="px-7 py-5 border-b border-stone-100">
                 <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-3">
-                  Recommendations
+                  Upcoming Lease Expirations
                 </p>
-                <div className="space-y-3">
+                <div className="bg-stone-50 rounded-lg overflow-hidden">
+                  <div className="grid grid-cols-[2fr_1.3fr_1.1fr_0.6fr_0.9fr] gap-2 px-3 py-1.5 text-[14px] text-stone-400 uppercase tracking-wider font-semibold border-b border-stone-100">
+                    <span>Property</span><span>Tenant</span><span>Expires</span><span>Days</span><span className="text-right">Rent</span>
+                  </div>
                   {[
-                    { title: "Rent increase — 2215 Capitol, Unit 2", desc: "Current rent $1,500 is 6% below comparable units in the area. Recommend increasing to $1,575 at September renewal." },
-                    { title: "Vacancy — 2215 Capitol, Unit 3", desc: "34 days on market. Two qualified showings this week. If no signed lease by April 15, recommend reducing asking rent from $1,475 to $1,425." },
-                    { title: "Preventive maintenance", desc: "Water heater at 1847 J St is 11 years old. Recommend budgeting $1,200 for replacement within the next 6 months to avoid emergency costs." },
+                    { prop: "901 Alhambra A", tenant: "M. Johnson", expires: "Apr 30, 2026", days: "30", rent: "$1,650", tone: "red" },
+                    { prop: "2205 Northgate", tenant: "M. Brooks", expires: "May 15, 2026", days: "46", rent: "$2,650", tone: "amber" },
+                    { prop: "4401 Marconi", tenant: "D. Patel", expires: "Jun 30, 2026", days: "92", rent: "$2,400", tone: "neutral" },
                   ].map((r) => (
-                    <div key={r.title} className="bg-accent/[0.04] border border-accent/[0.08] rounded-xl p-3.5">
-                      <p className="text-[13px] font-semibold text-stone-800">{r.title}</p>
-                      <p className="text-[13px] text-stone-500 leading-relaxed mt-1">{r.desc}</p>
+                    <div key={r.prop} className="grid grid-cols-[2fr_1.3fr_1.1fr_0.6fr_0.9fr] gap-2 px-3 py-2 text-[13px] border-b border-stone-100/60 last:border-0">
+                      <span className="text-stone-700">{r.prop}</span>
+                      <span className="text-stone-500">{r.tenant}</span>
+                      <span className={`font-mono font-medium ${r.tone === "red" ? "text-red-500" : r.tone === "amber" ? "text-amber-600" : "text-stone-500"}`}>{r.expires}</span>
+                      <span className={`font-mono font-medium ${r.tone === "red" ? "text-red-500" : r.tone === "amber" ? "text-amber-600" : "text-stone-500"}`}>{r.days}</span>
+                      <span className="font-mono text-stone-700 text-right">{r.rent}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Year-over-Year */}
-              <div className="px-7 py-5">
+              {/* Expenses & Maintenance */}
+              <div className="px-7 py-5 border-b border-stone-100">
                 <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-3">
-                  Year-over-Year Comparison
+                  Expenses & Maintenance
+                </p>
+                <div className="space-y-1.5 mb-3">
+                  {[
+                    { cat: "Maintenance & Repairs", amount: "$4,270", change: "+126%", tone: "warn" },
+                    { cat: "Insurance", amount: "$1,845", change: null, tone: "neutral" },
+                    { cat: "Management Fee", amount: "$1,588", change: null, tone: "neutral" },
+                    { cat: "Landscaping", amount: "$960", change: null, tone: "neutral" },
+                    { cat: "Utilities", amount: "$385", change: "+83%", tone: "warn" },
+                    { cat: "Pest Control", amount: "$240", change: null, tone: "neutral" },
+                    { cat: "Advertising", amount: "$175", change: null, tone: "neutral" },
+                    { cat: "Admin", amount: "$125", change: null, tone: "neutral" },
+                  ].map((e) => (
+                    <div key={e.cat} className="flex items-center justify-between text-[13px] py-1">
+                      <span className="text-stone-600 flex-1">{e.cat}</span>
+                      <span className="font-mono text-stone-700 mx-3">{e.amount}</span>
+                      <span className={`font-mono font-medium w-16 text-right ${e.tone === "warn" ? "text-amber-600" : "text-stone-300"}`}>{e.change ?? ""}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-[14px] text-stone-400">
+                  Total <span className="font-mono font-semibold text-stone-700">$9,588</span>. Maintenance $4,270 (45%) up 126% — water heater at 2847 Freeport ($875), make-ready at 1088 Fulton ($1,640), AC compressor at 2205 Northgate ($1,250). Remaining $505 routine. Per unit: <span className="font-mono font-semibold text-stone-700">$356</span>.
+                </p>
+                <p className="text-[13px] text-stone-400 mt-2">
+                  <span className="font-semibold text-stone-600">Repeat vendors:</span> Ace Plumbing ×2 ($1,060). Pro Handyman Svc ×2 ($1,960).
+                </p>
+              </div>
+
+              {/* Cash Position */}
+              <div className="px-7 py-5 border-b border-stone-100">
+                <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-3">
+                  Cash Position
                 </p>
                 <div className="bg-stone-50 rounded-lg overflow-hidden">
-                  <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-2 px-3 py-1.5 text-[14px] text-stone-400 uppercase tracking-wider font-semibold border-b border-stone-100">
-                    <span>Metric</span><span>Mar 2025</span><span>Mar 2026</span><span>Change</span>
-                  </div>
                   {[
-                    { metric: "Occupancy", prev: "87%", curr: "91%", change: "+4%", good: true },
-                    { metric: "Avg rent", prev: "$1,672", curr: "$1,718", change: "+2.7%", good: true },
-                    { metric: "Collection rate", prev: "93.1%", curr: "97.2%", change: "+4.1%", good: true },
-                    { metric: "NOI", prev: "$13,240", curr: "$14,820", change: "+11.9%", good: true },
-                    { metric: "Maintenance/unit", prev: "$128", curr: "$142", change: "+10.9%", good: false },
-                    { metric: "Avg days vacant", prev: "24.3", curr: "18.4", change: "-24.3%", good: true },
+                    { label: "Opening balance", delta: "", value: "$14,820", tone: "neutral" },
+                    { label: "+ Rent collected", delta: "+$19,700", value: "$34,520", tone: "pos" },
+                    { label: "– Expenses", delta: "–$9,588", value: "$24,932", tone: "neg" },
+                    { label: "– Distribution", delta: "–$12,000", value: "$12,932", tone: "neg" },
+                    { label: "Closing balance", delta: "1.6 mo. reserves", value: "$12,932", tone: "close" },
                   ].map((r) => (
-                    <div key={r.metric} className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-2 px-3 py-2 text-[13px] border-b border-stone-100/60 last:border-0">
-                      <span className="text-stone-700">{r.metric}</span>
-                      <span className="font-mono text-stone-400">{r.prev}</span>
-                      <span className="font-mono text-stone-700">{r.curr}</span>
-                      <span className={`font-mono font-medium ${r.good ? "text-emerald-500" : "text-amber-500"}`}>{r.change}</span>
+                    <div key={r.label} className={`grid grid-cols-[1.6fr_1fr_1fr] gap-2 px-3 py-2 text-[13px] border-b border-stone-100/60 last:border-0 ${r.tone === "close" ? "bg-accent/[0.04]" : ""}`}>
+                      <span className={`${r.tone === "close" ? "font-semibold text-stone-800" : "text-stone-600"}`}>{r.label}</span>
+                      <span className={`font-mono ${r.tone === "pos" ? "text-emerald-600" : r.tone === "neg" ? "text-amber-600" : r.tone === "close" ? "text-stone-500" : "text-stone-400"}`}>{r.delta}</span>
+                      <span className={`font-mono text-right ${r.tone === "close" ? "font-bold text-stone-900" : "text-stone-700"}`}>{r.value}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-[14px] text-stone-400 mt-3">
+                  Opened March at $14,820. After +$19,700 rent and –$9,588 expenses, pre-distribution balance was $24,932. $12,000 owner distribution processed, leaving <span className="font-mono font-semibold text-stone-700">$12,932</span> in reserves — roughly <span className="font-mono font-semibold text-stone-700">1.6 months</span> of operating costs.
+                </p>
+              </div>
+
+              {/* Net Operating Income */}
+              <div className="px-7 py-5 border-b border-stone-100">
+                <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-3">
+                  Net Operating Income
+                </p>
+                <p className="text-[14px] text-stone-600 leading-relaxed">
+                  Collected income of $19,700 minus operating expenses of $9,588 yields net operating income of
+                  <span className="font-semibold text-stone-800"> $10,112</span>. NOI per unit:
+                  <span className="font-semibold text-stone-800"> $843</span>. With both vacant units leased at asking
+                  rent and full collection, projected monthly NOI would be approximately
+                  <span className="font-semibold text-stone-800"> $14,462</span> — a $4,350 increase.
+                </p>
+              </div>
+
+              {/* Notable This Month */}
+              <div className="px-7 py-5">
+                <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-3">
+                  Notable This Month
+                </p>
+                <div className="space-y-3">
+                  {[
+                    { title: "1088 Fulton Ave", desc: "Vacant 52 days at $1,850/month. Lost revenue: $3,208. Make-ready: $1,640. Total vacancy cost ≈ $4,848. Portfolio average days-to-lease over last three turnovers: 21 days." },
+                    { title: "901 Alhambra Blvd A lease expires April 30", desc: "30 days out. Tenant M. Johnson in place since May 2025 at $1,650/month. Last comparable turnover cost ≈ $2,800 in make-ready and vacancy loss." },
+                    { title: "T. Reeves — partial payment", desc: "Paid $800 of $1,600 at 901 Alhambra Blvd B. First short payment since move-in October 2024. Outstanding balance as of March 31: $800." },
+                    { title: "Maintenance spike", desc: "$4,270 vs $1,890 in February (+126%). 88% of spend ($3,765) driven by three specific items. Remaining $505 routine and consistent with prior months." },
+                    { title: "2205 Northgate lease expires May 15", desc: "46 days out. Highest-rent unit in the portfolio at $2,650/month. Tenants M. & K. Brooks in place since June 2021." },
+                  ].map((r, i) => (
+                    <div key={r.title} className="bg-accent/[0.04] border border-accent/[0.08] rounded-xl p-3.5 flex gap-3">
+                      <span className="font-mono text-[13px] font-semibold text-accent shrink-0 w-5">{i + 1}</span>
+                      <div>
+                        <p className="text-[13px] font-semibold text-stone-800">{r.title}</p>
+                        <p className="text-[13px] text-stone-500 leading-relaxed mt-1">{r.desc}</p>
+                      </div>
                     </div>
                   ))}
                 </div>
