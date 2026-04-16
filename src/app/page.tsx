@@ -272,51 +272,6 @@ function Hero() {
   );
 }
 
-/* ═══════════════════════════════════════════════════════
-   SOCIAL PROOF — Brand marquee
-   ═══════════════════════════════════════════════════════ */
-
-function SocialProof() {
-  const names = [
-    "Ridgeline",
-    "Briarwood",
-    "Folsom Creek",
-    "Oak Park Mgmt",
-    "Capitol Realty",
-    "Arden Group",
-    "Natomas PM",
-    "Elk Grove Prop",
-    "Citrus Heights",
-    "Land Park Co",
-  ];
-
-  return (
-    <section className="py-20 border-y border-stone-200/60 bg-white overflow-hidden relative">
-      <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white z-10 pointer-events-none" />
-      <div className="container mx-auto px-6 mb-10 relative z-20">
-        <p className="text-center text-stone-400 text-xs font-bold uppercase tracking-[0.25em]">
-          Trusted by property managers nationwide
-        </p>
-      </div>
-      <div className="relative flex whitespace-nowrap">
-        <motion.div
-          animate={{ x: [0, -2000] }}
-          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-          className="flex gap-20 md:gap-32 items-center pr-20"
-        >
-          {[...names, ...names, ...names].map((name, i) => (
-            <span
-              key={i}
-              className="text-4xl md:text-6xl font-black text-stone-200 hover:text-stone-400 transition-colors cursor-default tracking-tighter uppercase"
-            >
-              {name}
-            </span>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
-}
 
 /* ═══════════════════════════════════════════════════════
    FEATURES — Asymmetric 6-col bento with visualizations
@@ -760,7 +715,6 @@ export default function Home() {
       <Navbar />
       <main className="relative z-10">
         <Hero />
-        <SocialProof />
         <Features />
         <BookDemo />
       </main>
