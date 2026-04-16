@@ -326,7 +326,7 @@ function Features() {
   return (
     <section id="services" className="py-32 bg-[#FAFAF7] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Section header — editorial, not aggressive */}
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -335,14 +335,15 @@ function Features() {
         >
           <div className="w-8 h-[1.5px] bg-accent mb-6" />
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tighter text-stone-900 leading-[0.92]">
-            One service. Complete visibility.
+            Every email. Classified.<br />Handled. Summarized.
           </h2>
           <p className="text-lg text-stone-400 mt-4 max-w-lg font-light leading-relaxed">
-            You manage the portfolio. We manage the inbox.
+            Your inbox is your operating system. We read every message, act on
+            the routine, draft the rest, and hand you one clear summary every morning.
           </p>
         </motion.div>
 
-        {/* Service 1 — Executive Inbox (text left, visual right) */}
+        {/* 1 — Classify (text left, visual right) */}
         <ScrollFocus>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -352,22 +353,20 @@ function Features() {
           className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-32"
         >
           <div>
+            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">Step 1</p>
             <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
-              Executive Inbox
+              Classify
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              Every inbound email — tenants, owners, vendors, insurance — read,
-              classified, and handled. Routine items auto-responded. Judgment
-              calls drafted in your voice. Delegable work routed to the right VA
-              with context. Emergencies flagged immediately. You get a morning
-              digest and full visibility across your entire operation.
+              Every inbound email — tenants, owners, vendors, insurance —
+              is read and sorted into four buckets. You see exactly what was
+              auto-handled, what needs your voice, what went to a VA, and
+              what only you can decide.
             </p>
           </div>
 
-          {/* Executive Inbox — classified inbox demo */}
-          <div className="bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col" style={{ maxHeight: "720px" }}>
-            {/* Header with classification tabs */}
-            <div className="px-6 pt-5 pb-3 border-b border-stone-100 shrink-0">
+          <div className="bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
+            <div className="px-6 pt-5 pb-3 border-b border-stone-100">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-[13px] font-bold text-stone-900 tracking-tight">Today&apos;s Inbox</p>
                 <span className="text-[14px] font-mono text-stone-400">342 emails processed</span>
@@ -396,20 +395,16 @@ function Features() {
               </div>
             </div>
 
-            {/* Scrollable email list */}
-            <div className="overflow-y-auto flex-1">
-              {/* Email rows with classification badges */}
+            <div>
               {[
                 { from: "T. Reeves", subject: "Rent will be late this month", time: "7:42 AM", badge: "Drafted", badgeColor: "bg-blue-100 text-blue-700", preview: "Draft ready — payment plan language, references lease clause 4.2" },
                 { from: "Ace Plumbing", subject: "Invoice #4821 — 2847 Freeport water heater", time: "7:38 AM", badge: "Routed to VA", badgeColor: "bg-amber-100 text-amber-700", preview: "Sent to Maria (bookkeeping VA) with AppFolio work order match" },
                 { from: "M. Johnson", subject: "RE: Lease renewal — 901 Alhambra A", time: "7:31 AM", badge: "Owner", badgeColor: "bg-red-100 text-red-700", preview: "Tenant counter-offering $1,600 vs your proposed $1,700. Needs your call." },
                 { from: "D. Patel", subject: "Can I install a Ring doorbell?", time: "7:24 AM", badge: "Auto-handled", badgeColor: "bg-emerald-100 text-emerald-700", preview: "Auto-replied: approved per modification policy, no drilling into stucco" },
                 { from: "State Farm", subject: "Policy renewal — 5540 Sky Pkwy", time: "7:18 AM", badge: "Routed to VA", badgeColor: "bg-amber-100 text-amber-700", preview: "Sent to Jessica (admin VA) — premium comparison flagged (+12%)" },
-                { from: "M. Brooks", subject: "Garage door won't close", time: "6:55 AM", badge: "Auto-handled", badgeColor: "bg-emerald-100 text-emerald-700", preview: "Auto-replied: work order created, vendor dispatched within 24hrs" },
-                { from: "R. Chen", subject: "When is my March distribution?", time: "6:48 AM", badge: "Auto-handled", badgeColor: "bg-emerald-100 text-emerald-700", preview: "Auto-replied: $12,000 processed March 28, arrives in 1-2 business days" },
                 { from: "2205 Northgate tenant", subject: "Water heater leaking badly", time: "6:12 AM", badge: "Emergency", badgeColor: "bg-red-100 text-red-700", preview: "Emergency detected — vendor auto-dispatched, you were texted immediately" },
               ].map((email, i) => (
-                <div key={i} className={`px-6 py-3 border-b border-stone-50 ${i === 0 ? "bg-accent/[0.03]" : "hover:bg-stone-50/50"} transition-colors duration-300`}>
+                <div key={i} className={`px-6 py-3 border-b border-stone-50 ${i === 0 ? "bg-accent/[0.03]" : ""}`}>
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-2 min-w-0">
                       <p className={`text-[14px] truncate ${i === 0 ? "font-bold text-stone-900" : "font-medium text-stone-700"}`}>{email.from}</p>
@@ -421,44 +416,234 @@ function Features() {
                   <p className="text-[13px] text-stone-400 truncate mt-0.5">{email.preview}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </motion.div>
+        </ScrollFocus>
 
-              {/* Morning Digest preview */}
-              <div className="px-6 py-5 bg-stone-50/60">
-                <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-3">
-                  Morning Digest
-                </p>
-                <div className="grid grid-cols-4 gap-3 mb-3">
-                  {[
-                    { label: "Auto-handled", value: "287", color: "text-emerald-600" },
-                    { label: "Drafted", value: "12", color: "text-blue-600" },
-                    { label: "Routed", value: "38", color: "text-amber-600" },
-                    { label: "Need you", value: "5", color: "text-red-600" },
-                  ].map((s) => (
-                    <div key={s.label} className="bg-white rounded-lg p-2 text-center border border-stone-100">
-                      <p className={`text-[15px] font-bold font-mono ${s.color}`}>{s.value}</p>
-                      <p className="text-[13px] text-stone-400 mt-0.5">{s.label}</p>
+        {/* 2 — Handle (visual left, text right — zigzag) */}
+        <ScrollFocus>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-32"
+        >
+          <div className="order-2 md:order-1 bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
+            {/* Auto-response example */}
+            <div className="px-6 pt-5 pb-3 border-b border-stone-100">
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] font-semibold px-1.5 py-0.5 rounded-md bg-emerald-100 text-emerald-700">Auto-handled</span>
+                <p className="text-[13px] text-stone-400">Responded in 4 seconds</p>
+              </div>
+            </div>
+            <div className="px-6 py-4 border-b border-stone-100">
+              <p className="text-[13px] text-stone-400 mb-1">From: D. Patel — 4401 Marconi Ave</p>
+              <p className="text-[14px] font-semibold text-stone-800">Can I install a Ring doorbell?</p>
+              <p className="text-[14px] text-stone-500 mt-2 leading-relaxed">Hey, I wanted to put up a Ring doorbell on my front door. Do I need permission for that? Thanks, Deepak</p>
+            </div>
+            <div className="px-6 py-4 bg-emerald-50/30">
+              <p className="text-[13px] text-emerald-700 font-semibold mb-2">Auto-response sent</p>
+              <p className="text-[14px] text-stone-600 leading-relaxed">Hi Deepak, you&apos;re welcome to install a Ring doorbell. Per your lease modification policy, we just ask that you avoid drilling into stucco and use the existing wiring if possible. No formal approval needed. Let us know if you need anything else!</p>
+              <p className="text-[13px] text-stone-400 mt-3 font-mono">Matched: modification-policy-minor-exterior</p>
+            </div>
+
+            <div className="border-t border-stone-100" />
+
+            {/* Draft example */}
+            <div className="px-6 pt-4 pb-3 border-b border-stone-100">
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] font-semibold px-1.5 py-0.5 rounded-md bg-blue-100 text-blue-700">Drafted for review</span>
+                <p className="text-[13px] text-stone-400">Waiting on your approval</p>
+              </div>
+            </div>
+            <div className="px-6 py-4 border-b border-stone-100">
+              <p className="text-[13px] text-stone-400 mb-1">From: T. Reeves — 901 Alhambra Blvd B</p>
+              <p className="text-[14px] font-semibold text-stone-800">Rent will be late this month</p>
+              <p className="text-[14px] text-stone-500 mt-2 leading-relaxed">Hi, I had an unexpected car repair and I won&apos;t be able to pay the full $1,600 until the 15th. Can I do a partial payment now?</p>
+            </div>
+            <div className="px-6 py-4 bg-blue-50/30">
+              <p className="text-[13px] text-blue-700 font-semibold mb-2">Draft response</p>
+              <p className="text-[14px] text-stone-600 leading-relaxed">Hi Tanya, thank you for letting us know ahead of time. Per your lease (Section 4.2), partial payments can be arranged with written agreement. I can accept $800 now with the remaining $800 due by the 15th. Please confirm and I&apos;ll send over the payment plan letter. Let me know if you have any questions.</p>
+              <div className="flex gap-2 mt-3">
+                <button className="text-[14px] font-semibold text-accent">Approve & Send</button>
+                <button className="text-[14px] font-semibold text-stone-400">Edit</button>
+              </div>
+            </div>
+          </div>
+
+          <div className="order-1 md:order-2">
+            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">Step 2</p>
+            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
+              Handle
+            </h3>
+            <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
+              Routine emails get instant, accurate replies — maintenance
+              confirmations, policy questions, rent status. For judgment calls,
+              a draft is written in your voice with the right lease clauses
+              and context pulled in. You approve or edit. Nothing sends without you.
+            </p>
+          </div>
+        </motion.div>
+        </ScrollFocus>
+
+        {/* 3 — Route (text left, visual right) */}
+        <ScrollFocus>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-32"
+        >
+          <div>
+            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">Step 3</p>
+            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
+              Route
+            </h3>
+            <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
+              Delegable work goes straight to the right VA with full context —
+              the email, the relevant property, the AppFolio work order. We also
+              monitor your VA inboxes read-only and flag stalled threads, SLA
+              breaches, and patterns you&apos;d otherwise miss.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
+            <div className="px-6 pt-5 pb-3 border-b border-stone-100">
+              <p className="text-[13px] font-bold text-stone-900 tracking-tight">VA Routing</p>
+            </div>
+
+            {[
+              { va: "Maria", role: "Bookkeeping", from: "Ace Plumbing", task: "Invoice #4821 — match to work order, verify amount, process in AppFolio", property: "2847 Freeport Blvd", badge: "bg-amber-100 text-amber-700" },
+              { va: "Jessica", role: "Admin", from: "State Farm", task: "Policy renewal — compare premium to last year (+12%), flag if above $200/yr increase", property: "5540 Sky Pkwy", badge: "bg-amber-100 text-amber-700" },
+              { va: "Carlos", role: "Maintenance", from: "M. Brooks", task: "Garage door follow-up — confirm vendor dispatch, get ETA, update tenant", property: "2205 Northgate Blvd", badge: "bg-amber-100 text-amber-700" },
+            ].map((item, i) => (
+              <div key={i} className="px-6 py-4 border-b border-stone-50">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-full bg-stone-100 flex items-center justify-center">
+                      <span className="text-[12px] font-bold text-stone-500">{item.va[0]}</span>
                     </div>
-                  ))}
+                    <div>
+                      <p className="text-[14px] font-semibold text-stone-800">{item.va}</p>
+                      <p className="text-[13px] text-stone-400">{item.role} VA</p>
+                    </div>
+                  </div>
+                  <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded-md ${item.badge}`}>Routed</span>
                 </div>
-                <div className="space-y-1.5">
-                  <p className="text-[13px] text-stone-600">
-                    <span className="font-semibold text-red-600">Emergency:</span> Water heater at 2205 Northgate — vendor dispatched 6:14 AM
-                  </p>
-                  <p className="text-[13px] text-stone-600">
-                    <span className="font-semibold text-stone-800">Lease renewal:</span> M. Johnson counter-offered at 901 Alhambra A — needs your decision
-                  </p>
-                  <p className="text-[13px] text-stone-600">
-                    <span className="font-semibold text-stone-800">VA alert:</span> 3 stalled vendor threads older than 48hrs flagged for follow-up
-                  </p>
+                <div className="bg-stone-50 rounded-lg p-3 mt-1">
+                  <p className="text-[13px] text-stone-400 mb-1">From: {item.from} — {item.property}</p>
+                  <p className="text-[13px] text-stone-700 leading-relaxed">{item.task}</p>
                 </div>
+              </div>
+            ))}
+
+            {/* VA monitoring alerts */}
+            <div className="px-6 py-4 bg-stone-50/60">
+              <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-2.5">
+                VA Inbox Monitor
+              </p>
+              <div className="space-y-2">
+                {[
+                  { alert: "Stalled thread", detail: "Maria — vendor invoice from Mar 28 has no reply (4 days)", tone: "text-amber-600" },
+                  { alert: "Stalled thread", detail: "Carlos — tenant follow-up at 3312 Stockton unanswered (3 days)", tone: "text-amber-600" },
+                  { alert: "SLA breach", detail: "Jessica — insurance renewal response overdue by 48hrs", tone: "text-red-600" },
+                ].map((a, i) => (
+                  <div key={i} className="flex items-start gap-2 text-[13px]">
+                    <span className={`font-semibold shrink-0 ${a.tone}`}>{a.alert}:</span>
+                    <span className="text-stone-600">{a.detail}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+        </ScrollFocus>
+
+        {/* 4 — Digest (visual left, text right — zigzag) */}
+        <ScrollFocus>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center"
+        >
+          <div className="order-2 md:order-1 bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
+            <div className="px-6 pt-5 pb-3 border-b border-stone-100">
+              <div className="flex items-center justify-between">
+                <p className="text-[13px] font-bold text-stone-900 tracking-tight">Morning Digest</p>
+                <span className="text-[14px] font-mono text-stone-400">April 16, 2026 — 7:00 AM</span>
               </div>
             </div>
 
-            {/* Footer */}
-            <div className="px-6 py-3 bg-stone-50/60 border-t border-stone-100 flex items-center justify-between shrink-0">
-              <p className="text-[14px] text-stone-400">84% auto-handled today</p>
-              <span className="text-[14px] text-stone-300 font-mono">Updated 7:45 AM</span>
+            <div className="px-6 py-4 border-b border-stone-100">
+              <div className="grid grid-cols-4 gap-3">
+                {[
+                  { label: "Auto-handled", value: "287", color: "text-emerald-600" },
+                  { label: "Drafted", value: "12", color: "text-blue-600" },
+                  { label: "Routed", value: "38", color: "text-amber-600" },
+                  { label: "Need you", value: "5", color: "text-red-600" },
+                ].map((s) => (
+                  <div key={s.label} className="bg-stone-50 rounded-lg p-2.5 text-center">
+                    <p className={`text-[15px] font-bold font-mono ${s.color}`}>{s.value}</p>
+                    <p className="text-[13px] text-stone-400 mt-0.5">{s.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
+
+            <div className="px-6 py-4 border-b border-stone-100">
+              <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-3">Needs your attention</p>
+              <div className="space-y-3">
+                {[
+                  { icon: "text-red-600", label: "Emergency", desc: "Water heater at 2205 Northgate — vendor dispatched 6:14 AM, tenant relocated to Unit 4 temporarily" },
+                  { icon: "text-stone-800", label: "Lease renewal", desc: "M. Johnson counter-offered $1,600 vs your proposed $1,700 at 901 Alhambra A. Draft response ready." },
+                  { icon: "text-stone-800", label: "Late rent", desc: "T. Reeves requesting partial payment plan ($800 now, $800 by 15th). Draft with lease clause 4.2 ready." },
+                  { icon: "text-stone-800", label: "Insurance", desc: "State Farm renewal for 5540 Sky Pkwy is +12% ($220/yr increase). Jessica flagged for your review." },
+                  { icon: "text-stone-800", label: "Vacancy", desc: "1088 Fulton Ave — 52 days vacant. 3 new inquiries this week, 1 showing scheduled Saturday." },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                    <span className={`font-semibold shrink-0 ${item.icon}`}>{item.label}:</span>
+                    <span className="text-stone-600 leading-relaxed">{item.desc}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="px-6 py-4">
+              <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-3">VA performance</p>
+              <div className="space-y-2">
+                {[
+                  { va: "Maria (Bookkeeping)", resolved: "14", stalled: "1", tone: "emerald" },
+                  { va: "Jessica (Admin)", resolved: "9", stalled: "1", tone: "amber" },
+                  { va: "Carlos (Maintenance)", resolved: "11", stalled: "1", tone: "amber" },
+                ].map((v) => (
+                  <div key={v.va} className="flex items-center justify-between text-[13px]">
+                    <span className="text-stone-700">{v.va}</span>
+                    <div className="flex items-center gap-3">
+                      <span className="font-mono text-emerald-600">{v.resolved} resolved</span>
+                      <span className={`font-mono ${v.tone === "amber" ? "text-amber-600" : "text-stone-400"}`}>{v.stalled} stalled</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="order-1 md:order-2">
+            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">Step 4</p>
+            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
+              Digest
+            </h3>
+            <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
+              One summary, every morning. Emergencies, decisions waiting on you,
+              VA performance, stalled threads — everything across your entire
+              operation in a single view. No more scrolling through hundreds of
+              messages to figure out what happened overnight.
+            </p>
           </div>
         </motion.div>
         </ScrollFocus>
