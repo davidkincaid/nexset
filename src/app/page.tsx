@@ -274,6 +274,129 @@ function Hero() {
 
 
 /* ═══════════════════════════════════════════════════════
+   INBOX DEMO — Interactive classified inbox
+   ═══════════════════════════════════════════════════════ */
+
+const inboxEmails = [
+  { from: "D. Patel", subject: "Can I install a Ring doorbell?", time: "7:24 AM", category: "auto-handled", preview: "Auto-replied: approved per modification policy, no drilling into stucco" },
+  { from: "M. Brooks", subject: "Garage door won't close", time: "6:55 AM", category: "auto-handled", preview: "Auto-replied: work order created, vendor dispatched within 24hrs" },
+  { from: "R. Chen", subject: "When is my March distribution?", time: "6:48 AM", category: "auto-handled", preview: "Auto-replied: $12,000 processed March 28, arrives in 1-2 business days" },
+  { from: "L. Petrovic", subject: "Is the laundry room open on weekends?", time: "6:30 AM", category: "auto-handled", preview: "Auto-replied: open 7am-10pm daily including weekends, per building policy" },
+  { from: "A. Brennan", subject: "Can someone check my smoke detector?", time: "5:58 AM", category: "auto-handled", preview: "Auto-replied: maintenance visit scheduled, tenant will be contacted for access" },
+  { from: "T. Reeves", subject: "Rent will be late this month", time: "7:42 AM", category: "drafted", preview: "Draft ready — payment plan language, references lease clause 4.2" },
+  { from: "M. Johnson", subject: "RE: Lease renewal — 901 Alhambra A", time: "7:31 AM", category: "drafted", preview: "Draft ready — counter-offer response at $1,650, split the difference" },
+  { from: "K. Pham", subject: "Requesting early lease termination", time: "7:10 AM", category: "drafted", preview: "Draft ready — early termination clause 12.3, two months notice + fee" },
+  { from: "Ace Plumbing", subject: "Invoice #4821 — 2847 Freeport water heater", time: "7:38 AM", category: "routed", preview: "Sent to Maria (bookkeeping VA) with AppFolio work order match" },
+  { from: "State Farm", subject: "Policy renewal — 5540 Sky Pkwy", time: "7:18 AM", category: "routed", preview: "Sent to Jessica (admin VA) — premium comparison flagged (+12%)" },
+  { from: "Pro Handyman Svc", subject: "Scheduling confirmation — 3312 Stockton", time: "6:40 AM", category: "routed", preview: "Sent to Carlos (maintenance VA) — confirm tenant access window" },
+  { from: "2205 Northgate tenant", subject: "Water heater leaking badly", time: "6:12 AM", category: "owner", preview: "Emergency detected — vendor auto-dispatched, you were texted immediately" },
+  { from: "R. Chen", subject: "Thinking about selling 4015 El Camino", time: "11:22 PM", category: "owner", preview: "Owner considering sale — impacts management agreement, needs your call" },
+];
+
+const categoryConfig: Record<string, { label: string; badgeColor: string }> = {
+  "auto-handled": { label: "Auto-handled", badgeColor: "bg-emerald-100 text-emerald-700" },
+  "drafted": { label: "Drafted", badgeColor: "bg-blue-100 text-blue-700" },
+  "routed": { label: "Routed to VA", badgeColor: "bg-amber-100 text-amber-700" },
+  "owner": { label: "Owner", badgeColor: "bg-red-100 text-red-700" },
+};
+
+const categoryCounts: Record<string, number> = {
+  "auto-handled": 103,
+  "drafted": 8,
+  "routed": 14,
+  "owner": 3,
+};
+
+function InboxDemo() {
+  const [activeTab, setActiveTab] = useState<string>("all");
+  const totalEmails = Object.values(categoryCounts).reduce((a, b) => a + b, 0);
+
+  const filteredEmails = activeTab === "all"
+    ? inboxEmails
+    : inboxEmails.filter((e) => e.category === activeTab);
+
+  const shownCount = filteredEmails.length;
+  const totalForTab = activeTab === "all" ? totalEmails : categoryCounts[activeTab];
+
+  return (
+    <div className="bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
+      <div className="px-6 pt-5 pb-3 border-b border-stone-100">
+        <div className="flex items-center justify-between mb-3">
+          <p className="text-[13px] font-bold text-stone-900 tracking-tight">Today&apos;s Inbox</p>
+          <span className="text-[14px] font-mono text-stone-400">{totalEmails} emails processed</span>
+        </div>
+        <div className="flex gap-1">
+          <button
+            onClick={() => setActiveTab("all")}
+            className={`px-2.5 py-1.5 rounded-lg text-[13px] font-semibold transition-colors ${
+              activeTab === "all"
+                ? "bg-stone-900 text-white"
+                : "text-stone-400 hover:bg-stone-50"
+            }`}
+          >
+            All
+            <span className={`ml-1 ${activeTab === "all" ? "text-stone-400" : "text-stone-300"}`}>
+              {totalEmails}
+            </span>
+          </button>
+          {Object.entries(categoryCounts).map(([key, count]) => (
+            <button
+              key={key}
+              onClick={() => setActiveTab(key)}
+              className={`px-2.5 py-1.5 rounded-lg text-[13px] font-semibold transition-colors ${
+                activeTab === key
+                  ? "bg-stone-900 text-white"
+                  : "text-stone-400 hover:bg-stone-50"
+              }`}
+            >
+              {categoryConfig[key].label}
+              <span className={`ml-1 ${activeTab === key ? "text-stone-400" : "text-stone-300"}`}>
+                {count}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.15 }}
+          >
+            {filteredEmails.map((email, i) => (
+              <div key={`${email.from}-${email.time}`} className={`px-6 py-3 border-b border-stone-50 ${i === 0 ? "bg-accent/[0.03]" : ""}`}>
+                <div className="flex items-center justify-between mb-1">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <p className={`text-[14px] truncate ${i === 0 ? "font-bold text-stone-900" : "font-medium text-stone-700"}`}>{email.from}</p>
+                    {activeTab === "all" && (
+                      <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded-md shrink-0 ${categoryConfig[email.category].badgeColor}`}>
+                        {categoryConfig[email.category].label}
+                      </span>
+                    )}
+                  </div>
+                  <span className="text-[13px] text-stone-400 font-mono shrink-0 ml-2">{email.time}</span>
+                </div>
+                <p className="text-[13px] text-stone-600 truncate">{email.subject}</p>
+                <p className="text-[13px] text-stone-400 truncate mt-0.5">{email.preview}</p>
+              </div>
+            ))}
+            {totalForTab > shownCount && (
+              <div className="px-6 py-3 text-center">
+                <p className="text-[13px] text-stone-400 font-mono">+ {totalForTab - shownCount} more</p>
+              </div>
+            )}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
    FEATURES — Asymmetric 6-col bento with visualizations
    ═══════════════════════════════════════════════════════ */
 
@@ -331,10 +454,10 @@ function Features() {
             <div className="px-6 py-4 border-b border-stone-100">
               <div className="grid grid-cols-4 gap-3">
                 {[
-                  { label: "Auto-handled", value: "287", color: "text-emerald-600" },
-                  { label: "Drafted", value: "12", color: "text-blue-600" },
-                  { label: "Routed", value: "38", color: "text-amber-600" },
-                  { label: "Need you", value: "5", color: "text-red-600" },
+                  { label: "Auto-handled", value: "103", color: "text-emerald-600" },
+                  { label: "Drafted", value: "8", color: "text-blue-600" },
+                  { label: "Routed", value: "14", color: "text-amber-600" },
+                  { label: "Need you", value: "3", color: "text-red-600" },
                 ].map((s) => (
                   <div key={s.label} className="bg-stone-50 rounded-lg p-2.5 text-center">
                     <p className={`text-[15px] font-bold font-mono ${s.color}`}>{s.value}</p>
@@ -393,58 +516,8 @@ function Features() {
           transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
           className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-32"
         >
-          <div className="order-2 md:order-1 bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
-            <div className="px-6 pt-5 pb-3 border-b border-stone-100">
-              <div className="flex items-center justify-between mb-3">
-                <p className="text-[13px] font-bold text-stone-900 tracking-tight">Today&apos;s Inbox</p>
-                <span className="text-[14px] font-mono text-stone-400">342 emails processed</span>
-              </div>
-              <div className="flex gap-1">
-                {[
-                  { label: "Auto-handled", count: "287", active: false },
-                  { label: "Drafted", count: "12", active: false },
-                  { label: "Routed to VA", count: "38", active: false },
-                  { label: "Owner", count: "5", active: true },
-                ].map((tab) => (
-                  <button
-                    key={tab.label}
-                    className={`px-2.5 py-1.5 rounded-lg text-[13px] font-semibold transition-colors ${
-                      tab.active
-                        ? "bg-stone-900 text-white"
-                        : "text-stone-400 hover:bg-stone-50"
-                    }`}
-                  >
-                    {tab.label}
-                    <span className={`ml-1 ${tab.active ? "text-stone-400" : "text-stone-300"}`}>
-                      {tab.count}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              {[
-                { from: "T. Reeves", subject: "Rent will be late this month", time: "7:42 AM", badge: "Drafted", badgeColor: "bg-blue-100 text-blue-700", preview: "Draft ready — payment plan language, references lease clause 4.2" },
-                { from: "Ace Plumbing", subject: "Invoice #4821 — 2847 Freeport water heater", time: "7:38 AM", badge: "Routed to VA", badgeColor: "bg-amber-100 text-amber-700", preview: "Sent to Maria (bookkeeping VA) with AppFolio work order match" },
-                { from: "M. Johnson", subject: "RE: Lease renewal — 901 Alhambra A", time: "7:31 AM", badge: "Owner", badgeColor: "bg-red-100 text-red-700", preview: "Tenant counter-offering $1,600 vs your proposed $1,700. Needs your call." },
-                { from: "D. Patel", subject: "Can I install a Ring doorbell?", time: "7:24 AM", badge: "Auto-handled", badgeColor: "bg-emerald-100 text-emerald-700", preview: "Auto-replied: approved per modification policy, no drilling into stucco" },
-                { from: "State Farm", subject: "Policy renewal — 5540 Sky Pkwy", time: "7:18 AM", badge: "Routed to VA", badgeColor: "bg-amber-100 text-amber-700", preview: "Sent to Jessica (admin VA) — premium comparison flagged (+12%)" },
-                { from: "2205 Northgate tenant", subject: "Water heater leaking badly", time: "6:12 AM", badge: "Emergency", badgeColor: "bg-red-100 text-red-700", preview: "Emergency detected — vendor auto-dispatched, you were texted immediately" },
-              ].map((email, i) => (
-                <div key={i} className={`px-6 py-3 border-b border-stone-50 ${i === 0 ? "bg-accent/[0.03]" : ""}`}>
-                  <div className="flex items-center justify-between mb-1">
-                    <div className="flex items-center gap-2 min-w-0">
-                      <p className={`text-[14px] truncate ${i === 0 ? "font-bold text-stone-900" : "font-medium text-stone-700"}`}>{email.from}</p>
-                      <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded-md shrink-0 ${email.badgeColor}`}>{email.badge}</span>
-                    </div>
-                    <span className="text-[13px] text-stone-400 font-mono shrink-0 ml-2">{email.time}</span>
-                  </div>
-                  <p className="text-[13px] text-stone-600 truncate">{email.subject}</p>
-                  <p className="text-[13px] text-stone-400 truncate mt-0.5">{email.preview}</p>
-                </div>
-              ))}
-            </div>
+          <div className="order-2 md:order-1">
+            <InboxDemo />
           </div>
 
           <div className="order-1 md:order-2">
@@ -453,11 +526,11 @@ function Features() {
               See what&apos;s handled
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              Scan the classified inbox. 287 emails already taken care of —
+              Scan the classified inbox. 103 emails already taken care of —
               maintenance confirmations sent, rent questions answered, policy
-              requests approved. Every message color-coded so you know
-              what was auto-handled, what&apos;s drafted, what went to a VA,
-              and what&apos;s waiting on you.
+              requests approved. Click any category to filter. Every message
+              color-coded so you know what was auto-handled, what&apos;s drafted,
+              what went to a VA, and what&apos;s waiting on you.
             </p>
           </div>
         </motion.div>
