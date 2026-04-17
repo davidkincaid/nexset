@@ -261,9 +261,9 @@ function Hero() {
           </h1>
 
           <p className="text-lg md:text-xl text-stone-600 max-w-2xl mx-auto mb-12 font-light leading-relaxed tracking-tight">
-            Nexset reads, classifies, and handles your email — so you open
-            one summary in the morning and see the state of your entire
-            operation.
+            A 24/7 operations layer that reads, classifies, and handles every
+            email hitting your inbox — so you open one summary in the morning
+            and see the state of your entire operation.
           </p>
 
         </motion.div>
@@ -424,8 +424,10 @@ function Features() {
             Every email. Classified.<br />Handled. Summarized.
           </h2>
           <p className="text-lg text-stone-400 mt-4 max-w-lg font-light leading-relaxed">
-            Your inbox is your operating system. We read every message, act on
-            the routine, draft the rest, and hand you one clear summary every morning.
+            You&apos;re managing 200-600 doors, fielding 200+ emails a day, and
+            losing 5-10 hours a week to messages that don&apos;t actually need you.
+            Your team has VAs, but everything still funnels through you. You&apos;re
+            the bottleneck. We fix that.
           </p>
         </motion.div>
 
@@ -444,10 +446,10 @@ function Features() {
               Open your digest
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              You sit down, open one email. Everything that happened
-              overnight — emergencies handled, decisions waiting on you,
-              how your VAs performed — in a single view. No scrolling
-              through hundreds of messages to piece it together.
+              You sit down, open one email. The system ran 24/7 while you
+              were away — emergencies escalated via SMS the moment they came
+              in, routine emails auto-responded in real time, everything else
+              classified and queued. One view, full picture.
             </p>
           </div>
 
@@ -657,8 +659,8 @@ function Features() {
               <div className="space-y-2">
                 {[
                   { alert: "Stalled thread", detail: "Maria — vendor invoice from Mar 28 has no reply (4 days)", tone: "text-amber-600" },
-                  { alert: "Stalled thread", detail: "Carlos — tenant follow-up at 3312 Stockton unanswered (3 days)", tone: "text-amber-600" },
                   { alert: "SLA breach", detail: "Jessica — insurance renewal response overdue by 48hrs", tone: "text-red-600" },
+                  { alert: "Pattern detected", detail: "3 tenants at 2205 Northgate reported hot water issues this week", tone: "text-red-600" },
                 ].map((a, i) => (
                   <div key={i} className="flex items-start gap-2 text-[13px]">
                     <span className={`font-semibold shrink-0 ${a.tone}`}>{a.alert}:</span>
@@ -677,8 +679,9 @@ function Features() {
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
               See exactly what was routed to each VA — the email, the
               property, the specific task. We monitor their inboxes read-only
-              and surface stalled threads, missed follow-ups, and SLA
-              breaches so nothing falls through the cracks.
+              and surface stalled threads, SLA breaches, and patterns across
+              properties — like three tenants in the same building all
+              reporting hot water issues the same week.
             </p>
           </div>
         </motion.div>
@@ -711,8 +714,9 @@ function BookDemo() {
         </h2>
         <p className="text-base text-stone-400 mt-5 mx-auto max-w-md leading-relaxed font-light">
           15-minute call where we look at your current email volume,
-          show you how classification works on real messages, and map
-          out what implementation looks like for your team.
+          show you how classification works on your real messages, and
+          map out what your team gets back — hours per week for you,
+          more autonomy for your VAs, faster responses for your tenants and owners.
         </p>
         <div className="mt-10">
           <div className="relative group inline-block">
