@@ -281,16 +281,23 @@ const inboxEmails = [
   { from: "D. Patel", subject: "Can I install a Ring doorbell?", time: "7:24 AM", category: "auto-handled", preview: "Auto-replied: approved per modification policy, no drilling into stucco" },
   { from: "M. Brooks", subject: "Garage door won't close", time: "6:55 AM", category: "auto-handled", preview: "Auto-replied: work order created, vendor dispatched within 24hrs" },
   { from: "R. Chen", subject: "When is my March distribution?", time: "6:48 AM", category: "auto-handled", preview: "Auto-replied: $12,000 processed March 28, arrives in 1-2 business days" },
-  { from: "L. Petrovic", subject: "Is the laundry room open on weekends?", time: "6:30 AM", category: "auto-handled", preview: "Auto-replied: open 7am-10pm daily including weekends, per building policy" },
-  { from: "A. Brennan", subject: "Can someone check my smoke detector?", time: "5:58 AM", category: "auto-handled", preview: "Auto-replied: maintenance visit scheduled, tenant will be contacted for access" },
+  { from: "A. Brennan", subject: "Locked out — can someone let me in?", time: "6:30 AM", category: "auto-handled", preview: "Auto-replied: locksmith dispatched, after-hours lockout fee per lease Section 9.1" },
+  { from: "S. Delgado", subject: "What's the move-out process?", time: "5:58 AM", category: "auto-handled", preview: "Auto-replied: 30-day written notice, move-out inspection checklist attached" },
   { from: "T. Reeves", subject: "Rent will be late this month", time: "7:42 AM", category: "drafted", preview: "Draft ready — payment plan language, references lease clause 4.2" },
   { from: "M. Johnson", subject: "RE: Lease renewal — 901 Alhambra A", time: "7:31 AM", category: "drafted", preview: "Draft ready — counter-offer response at $1,650, split the difference" },
-  { from: "K. Pham", subject: "Requesting early lease termination", time: "7:10 AM", category: "drafted", preview: "Draft ready — early termination clause 12.3, two months notice + fee" },
+  { from: "R. Chen", subject: "Why is there a $1,200 charge on my statement?", time: "7:10 AM", category: "drafted", preview: "Draft ready — explains security deposit held in trust, not part of disbursement" },
+  { from: "K. Pham", subject: "Requesting early lease termination", time: "6:44 AM", category: "drafted", preview: "Draft ready — early termination clause 12.3, two months notice + fee" },
+  { from: "J. Whitmore", subject: "Neighbor's dog barking all night", time: "6:20 AM", category: "drafted", preview: "Draft ready — noise complaint acknowledgment, references pet policy and next steps" },
   { from: "Ace Plumbing", subject: "Invoice #4821 — 2847 Freeport water heater", time: "7:38 AM", category: "routed", preview: "Sent to Maria (bookkeeping VA) with AppFolio work order match" },
   { from: "State Farm", subject: "Policy renewal — 5540 Sky Pkwy", time: "7:18 AM", category: "routed", preview: "Sent to Jessica (admin VA) — premium comparison flagged (+12%)" },
   { from: "Pro Handyman Svc", subject: "Scheduling confirmation — 3312 Stockton", time: "6:40 AM", category: "routed", preview: "Sent to Carlos (maintenance VA) — confirm tenant access window" },
+  { from: "N. Udoh", subject: "Application submitted — 1088 Fulton Ave", time: "6:15 AM", category: "routed", preview: "Sent to Leasing VA — run screening, verify employment, check rental history" },
+  { from: "City of Sacramento", subject: "Code compliance notice — 2847 Freeport", time: "5:45 AM", category: "routed", preview: "Sent to Jessica (admin VA) — respond by April 28, sidewalk vegetation issue" },
   { from: "2205 Northgate tenant", subject: "Water heater leaking badly", time: "6:12 AM", category: "owner", preview: "Emergency detected — vendor auto-dispatched, you were texted immediately" },
   { from: "R. Chen", subject: "Thinking about selling 4015 El Camino", time: "11:22 PM", category: "owner", preview: "Owner considering sale — impacts management agreement, needs your call" },
+  { from: "M. Johnson", subject: "Why am I paying for that plumbing repair?", time: "10:48 PM", category: "owner", preview: "Owner disputing $875 expense — wants explanation of owner vs tenant responsibility" },
+  { from: "Fresno Housing Authority", subject: "HAP contract renewal — 901 Alhambra B", time: "4:30 PM", category: "owner", preview: "Section 8 contract renewal requires your signature — deadline May 1" },
+  { from: "D. Patel", subject: "I want to break my lease — job relocation", time: "3:15 PM", category: "owner", preview: "Tenant requesting immediate termination, needs your decision on penalty vs negotiation" },
 ];
 
 const categoryConfig: Record<string, { label: string; badgeColor: string }> = {
@@ -301,19 +308,20 @@ const categoryConfig: Record<string, { label: string; badgeColor: string }> = {
 };
 
 const categoryCounts: Record<string, number> = {
-  "auto-handled": 103,
-  "drafted": 8,
+  "auto-handled": 98,
+  "drafted": 12,
   "routed": 14,
-  "owner": 3,
+  "owner": 5,
 };
 
 function InboxDemo() {
   const [activeTab, setActiveTab] = useState<string>("all");
   const totalEmails = Object.values(categoryCounts).reduce((a, b) => a + b, 0);
 
+  const maxVisible = 5;
   const filteredEmails = activeTab === "all"
-    ? inboxEmails
-    : inboxEmails.filter((e) => e.category === activeTab);
+    ? inboxEmails.slice(0, maxVisible)
+    : inboxEmails.filter((e) => e.category === activeTab).slice(0, maxVisible);
 
   const shownCount = filteredEmails.length;
   const totalForTab = activeTab === "all" ? totalEmails : categoryCounts[activeTab];
@@ -454,10 +462,10 @@ function Features() {
             <div className="px-6 py-4 border-b border-stone-100">
               <div className="grid grid-cols-4 gap-3">
                 {[
-                  { label: "Auto-handled", value: "103", color: "text-emerald-600" },
-                  { label: "Drafted", value: "8", color: "text-blue-600" },
+                  { label: "Auto-handled", value: "98", color: "text-emerald-600" },
+                  { label: "Drafted", value: "12", color: "text-blue-600" },
                   { label: "Routed", value: "14", color: "text-amber-600" },
-                  { label: "Need you", value: "3", color: "text-red-600" },
+                  { label: "Need you", value: "5", color: "text-red-600" },
                 ].map((s) => (
                   <div key={s.label} className="bg-stone-50 rounded-lg p-2.5 text-center">
                     <p className={`text-[15px] font-bold font-mono ${s.color}`}>{s.value}</p>
@@ -526,7 +534,7 @@ function Features() {
               See what&apos;s handled
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              Scan the classified inbox. 103 emails already taken care of —
+              Scan the classified inbox. 98 emails already taken care of —
               maintenance confirmations sent, rent questions answered, policy
               requests approved. Click any category to filter. Every message
               color-coded so you know what was auto-handled, what&apos;s drafted,
