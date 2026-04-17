@@ -358,7 +358,7 @@ function InboxDemo() {
         </div>
       </div>
 
-      <div>
+      <div style={{ height: "440px" }} className="overflow-y-auto">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
