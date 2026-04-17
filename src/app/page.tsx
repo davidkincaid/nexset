@@ -735,12 +735,6 @@ function BookDemo() {
 }
 
 /* ═══════════════════════════════════════════════════════
-   TESTIMONIALS — Draggable horizontal
-   ═══════════════════════════════════════════════════════ */
-
-
-
-/* ═══════════════════════════════════════════════════════
    FOOTER
    ═══════════════════════════════════════════════════════ */
 
@@ -757,7 +751,7 @@ function Footer() {
             </p>
           </div>
           {[
-            { title: "Services", links: ["Executive Inbox"] },
+            { title: "Services", links: ["Executive Inbox", "Owner Reports", "Owner Pipeline (coming soon)"] },
             { title: "Company", links: ["About", "Process", "Contact"] },
             { title: "Legal", links: ["Privacy Policy", "Terms of Service"] },
           ].map((col) => (
