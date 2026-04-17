@@ -426,8 +426,8 @@ function Features() {
           <p className="text-lg text-stone-400 mt-4 max-w-lg font-light leading-relaxed">
             You&apos;re managing 200-600 doors, fielding 200+ emails a day, and
             losing 5-10 hours a week to messages that don&apos;t actually need you.
-            Your team has VAs, but everything still funnels through you. You&apos;re
-            the bottleneck. We fix that.
+            Even with a team, the inbox still lands on you. We handle the
+            volume so you can focus on the decisions that actually need you.
           </p>
         </motion.div>
 
