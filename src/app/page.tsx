@@ -533,36 +533,43 @@ const taskTabs = [
   { key: "done", label: "Completed", count: 47 },
 ];
 
-const tasksDueToday = [
-  {
-    title: "Follow up with State Farm on insurance quote",
-    from: "State Farm email — 5540 Sky Pkwy renewal",
-    due: "Friday, April 19",
-  },
-  {
-    title: "Prepare recertification docs for housing authority",
-    from: "HACLA — tenant at 2847 Freeport",
-    due: "April 28",
-  },
-  {
-    title: "Get refinancing comp for M. Johnson",
-    from: "M. Johnson — 901 Alhambra",
-    due: "This week",
-  },
-  {
-    title: "Review lease counter-offer at 901 Alhambra",
-    from: "M. Johnson — proposed $1,600 vs your $1,700",
-    due: "Today",
-  },
-  {
-    title: "Confirm vendor ETA with tenant at 2205 Northgate",
-    from: "Ace Plumbing — garage door follow-up",
-    due: "Today",
-  },
+type Task = { tab: string; title: string; from: string; due: string };
+
+const allTasks: Task[] = [
+  // Due Today (spec tasks marked Today + fill-ins to reach 5)
+  { tab: "today", title: "Review lease counter-offer at 901 Alhambra", from: "M. Johnson — proposed $1,600 vs your $1,700", due: "Today" },
+  { tab: "today", title: "Confirm vendor ETA with tenant at 2205 Northgate", from: "Ace Plumbing — garage door follow-up", due: "Today" },
+  { tab: "today", title: "Approve T. Reeves payment plan reply", from: "T. Reeves — 901 Alhambra Blvd B", due: "Today" },
+  { tab: "today", title: "Decide on D. Patel early termination", from: "D. Patel — 4401 Marconi", due: "Today" },
+  { tab: "today", title: "Sign State Farm renewal pre-approval", from: "State Farm — 5540 Sky Pkwy", due: "Today" },
+
+  // This Week
+  { tab: "week", title: "Follow up with State Farm on insurance quote", from: "State Farm email — 5540 Sky Pkwy renewal", due: "Friday, April 19" },
+  { tab: "week", title: "Get refinancing comp for M. Johnson", from: "M. Johnson — 901 Alhambra", due: "This week" },
+  { tab: "week", title: "Schedule plumber follow-up at 2847 Freeport", from: "Ace Plumbing invoice 4821", due: "Saturday, April 19" },
+  { tab: "week", title: "Call R. Chen re: 4015 El Camino sale", from: "Owner inquiry — sale impacts management agreement", due: "Tuesday, April 22" },
+  { tab: "week", title: "Run N. Udoh application screening", from: "Leasing pipeline — 1088 Fulton Ave", due: "Sunday, April 20" },
+
+  // Later
+  { tab: "later", title: "Prepare recertification docs for housing authority", from: "HACLA — tenant at 2847 Freeport", due: "April 28" },
+  { tab: "later", title: "Sign HAP renewal at 901 Alhambra B", from: "Fresno Housing Authority", due: "May 1" },
+  { tab: "later", title: "Q2 owner statement review for R. Chen", from: "Bookkeeping cycle", due: "May 5" },
+  { tab: "later", title: "Annual rent increase letters batch", from: "4401 Marconi + 3 properties", due: "May 15" },
+  { tab: "later", title: "Property tax review", from: "Sacramento County assessor", due: "June 1" },
+
+  // Completed
+  { tab: "done", title: "Sent A. Brennan locksmith dispatch confirmation", from: "After-hours lockout request", due: "Completed Apr 17" },
+  { tab: "done", title: "Logged Pro Handyman scheduling at 3312 Stockton", from: "Vendor confirmation", due: "Completed Apr 17" },
+  { tab: "done", title: "Replied to S. Delgado on move-out process", from: "Tenant inquiry", due: "Completed Apr 17" },
+  { tab: "done", title: "Approved K. Pham early termination response", from: "K. Pham — 1432 Capitol Ave", due: "Completed Apr 16" },
+  { tab: "done", title: "Sent J. Whitmore noise complaint acknowledgment", from: "Pet policy reference attached", due: "Completed Apr 16" },
 ];
 
 function TasksDemo() {
   const [activeTab, setActiveTab] = useState("today");
+  const tasksForTab = allTasks.filter((t) => t.tab === activeTab);
+  const tabMeta = taskTabs.find((t) => t.key === activeTab);
+  const moreCount = tabMeta ? tabMeta.count - tasksForTab.length : 0;
 
   return (
     <div className="bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
@@ -591,40 +598,53 @@ function TasksDemo() {
         </div>
       </div>
 
-      <div>
-        {tasksDueToday.map((task, i) => (
-          <div
-            key={i}
-            className="px-6 py-3 border-b border-stone-50 flex items-center gap-3"
-          >
-            <div className="min-w-0 flex-1">
-              <p className="text-[14px] font-semibold text-stone-800">{task.title}</p>
-              <p className="text-[13px] text-stone-500 mt-0.5">From: {task.from}</p>
-              <p className="text-[12px] text-stone-400 italic mt-0.5">Due: {task.due}</p>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.15 }}
+        >
+          {tasksForTab.map((task, i) => (
+            <div
+              key={i}
+              className="px-6 py-3 border-b border-stone-50 flex items-center gap-3"
+            >
+              <div className="min-w-0 flex-1">
+                <p className="text-[14px] font-semibold text-stone-800">{task.title}</p>
+                <p className="text-[13px] text-stone-500 mt-0.5">From: {task.from}</p>
+                <p className="text-[12px] text-stone-400 italic mt-0.5">Due: {task.due}</p>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  aria-label="Complete"
+                  className="text-stone-300 hover:text-stone-500 transition-colors"
+                >
+                  <Check size={16} />
+                </button>
+                <button
+                  aria-label="Snooze"
+                  className="text-stone-300 hover:text-stone-500 transition-colors"
+                >
+                  <Clock size={16} />
+                </button>
+                <button
+                  aria-label="Dismiss"
+                  className="text-stone-300 hover:text-stone-500 transition-colors"
+                >
+                  <XIcon size={16} />
+                </button>
+              </div>
             </div>
-            <div className="flex items-center gap-2 shrink-0">
-              <button
-                aria-label="Complete"
-                className="text-stone-300 hover:text-stone-500 transition-colors"
-              >
-                <Check size={16} />
-              </button>
-              <button
-                aria-label="Snooze"
-                className="text-stone-300 hover:text-stone-500 transition-colors"
-              >
-                <Clock size={16} />
-              </button>
-              <button
-                aria-label="Dismiss"
-                className="text-stone-300 hover:text-stone-500 transition-colors"
-              >
-                <XIcon size={16} />
-              </button>
+          ))}
+          {moreCount > 0 && (
+            <div className="px-6 py-3 text-center">
+              <p className="text-[13px] text-stone-400 font-mono">+ {moreCount} more</p>
             </div>
-          </div>
-        ))}
-      </div>
+          )}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
