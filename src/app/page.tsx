@@ -12,6 +12,7 @@ import {
 import {
   ArrowRight,
 } from "@phosphor-icons/react";
+import { Check, Clock, X as XIcon, ChevronDown } from "lucide-react";
 import Wordmark from "@/components/Wordmark";
 
 const spring = { type: "spring" as const, stiffness: 100, damping: 20 };
@@ -417,6 +418,218 @@ function InboxDemo() {
 }
 
 /* ═══════════════════════════════════════════════════════
+   EMAIL WITH EXPANDABLE THREAD — Drafts + Owner-flagged
+   ═══════════════════════════════════════════════════════ */
+
+type PriorMessage = { from: string; time: string; body: string };
+
+function EmailWithThread({
+  badge,
+  badgeMeta,
+  priorMessages,
+  current,
+  response,
+}: {
+  badge: { label: string; classes: string };
+  badgeMeta: string;
+  priorMessages: PriorMessage[];
+  current: { from: string; subject: string; body: string };
+  response?: {
+    tone: "draft" | "decision";
+    label: string;
+    body: string;
+    actions?: { primary: string; secondary: string };
+  };
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const responseBg = response?.tone === "draft" ? "bg-blue-50/30" : "bg-red-50/20";
+  const responseLabelColor = response?.tone === "draft" ? "text-blue-700" : "text-red-700";
+
+  return (
+    <>
+      <div className="px-6 pt-4 pb-3 border-b border-stone-100">
+        <div className="flex items-center gap-2">
+          <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded-md ${badge.classes}`}>
+            {badge.label}
+          </span>
+          <p className="text-[13px] text-stone-400">{badgeMeta}</p>
+        </div>
+      </div>
+
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="w-full px-6 py-2.5 flex items-center justify-between text-left border-b border-stone-100 hover:bg-stone-50/40 transition-colors"
+      >
+        <span className="text-[13px] text-stone-500 font-medium">
+          {expanded ? "Hide thread" : `View full thread (${priorMessages.length} prior)`}
+        </span>
+        <ChevronDown
+          size={14}
+          className={`text-stone-400 transition-transform ${expanded ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      <AnimatePresence initial={false}>
+        {expanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
+            className="overflow-hidden bg-stone-50/50"
+          >
+            {priorMessages.map((msg, i) => (
+              <div
+                key={i}
+                className="px-6 py-3 border-b border-stone-100 border-l-2 border-l-stone-200"
+              >
+                <div className="flex items-center justify-between mb-1">
+                  <p className="text-[13px] font-semibold text-stone-700">{msg.from}</p>
+                  <span className="text-[12px] font-mono text-stone-400">{msg.time}</span>
+                </div>
+                <p className="text-[13px] text-stone-500 leading-relaxed">{msg.body}</p>
+              </div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="px-6 py-4 border-b border-stone-100">
+        <p className="text-[13px] text-stone-400 mb-1">From: {current.from}</p>
+        <p className="text-[14px] font-semibold text-stone-800">{current.subject}</p>
+        <p className="text-[14px] text-stone-500 mt-2 leading-relaxed">{current.body}</p>
+      </div>
+
+      {response && (
+        <div className={`px-6 py-4 ${responseBg}`}>
+          <p className={`text-[13px] font-semibold mb-2 ${responseLabelColor}`}>
+            {response.label}
+          </p>
+          <p className="text-[14px] text-stone-600 leading-relaxed">{response.body}</p>
+          {response.actions && (
+            <div className="flex gap-2 mt-3">
+              <button className="text-[14px] font-semibold text-accent">
+                {response.actions.primary}
+              </button>
+              <button className="text-[14px] font-semibold text-stone-400">
+                {response.actions.secondary}
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+    </>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   TASKS DEMO — Tab-filtered task list with row actions
+   ═══════════════════════════════════════════════════════ */
+
+const taskTabs = [
+  { key: "today", label: "Due Today", count: 5 },
+  { key: "week", label: "This Week", count: 12 },
+  { key: "later", label: "Later", count: 8 },
+  { key: "done", label: "Completed", count: 47 },
+];
+
+const tasksDueToday = [
+  {
+    title: "Follow up with State Farm on insurance quote",
+    from: "State Farm email — 5540 Sky Pkwy renewal",
+    due: "Friday, April 19",
+  },
+  {
+    title: "Prepare recertification docs for housing authority",
+    from: "HACLA — tenant at 2847 Freeport",
+    due: "April 28",
+  },
+  {
+    title: "Get refinancing comp for M. Johnson",
+    from: "M. Johnson — 901 Alhambra",
+    due: "This week",
+  },
+  {
+    title: "Review lease counter-offer at 901 Alhambra",
+    from: "M. Johnson — proposed $1,600 vs your $1,700",
+    due: "Today",
+  },
+  {
+    title: "Confirm vendor ETA with tenant at 2205 Northgate",
+    from: "Ace Plumbing — garage door follow-up",
+    due: "Today",
+  },
+];
+
+function TasksDemo() {
+  const [activeTab, setActiveTab] = useState("today");
+
+  return (
+    <div className="bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
+      <div className="px-6 pt-5 pb-3 border-b border-stone-100">
+        <div className="flex items-center justify-between mb-3">
+          <p className="text-[13px] font-bold text-stone-900 tracking-tight">Tasks from Your Inbox</p>
+          <span className="text-[14px] font-mono text-stone-400">12 open</span>
+        </div>
+        <div className="flex gap-1">
+          {taskTabs.map((t) => (
+            <button
+              key={t.key}
+              onClick={() => setActiveTab(t.key)}
+              className={`px-2.5 py-1.5 rounded-lg text-[13px] font-semibold transition-colors ${
+                activeTab === t.key
+                  ? "bg-stone-900 text-white"
+                  : "text-stone-400 hover:bg-stone-50"
+              }`}
+            >
+              {t.label}
+              <span className={`ml-1 ${activeTab === t.key ? "text-stone-400" : "text-stone-300"}`}>
+                {t.count}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        {tasksDueToday.map((task, i) => (
+          <div
+            key={i}
+            className="px-6 py-3 border-b border-stone-50 flex items-center gap-3"
+          >
+            <div className="min-w-0 flex-1">
+              <p className="text-[14px] font-semibold text-stone-800">{task.title}</p>
+              <p className="text-[13px] text-stone-500 mt-0.5">From: {task.from}</p>
+              <p className="text-[12px] text-stone-400 italic mt-0.5">Due: {task.due}</p>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                aria-label="Complete"
+                className="text-stone-300 hover:text-stone-500 transition-colors"
+              >
+                <Check size={16} />
+              </button>
+              <button
+                aria-label="Snooze"
+                className="text-stone-300 hover:text-stone-500 transition-colors"
+              >
+                <Clock size={16} />
+              </button>
+              <button
+                aria-label="Dismiss"
+                className="text-stone-300 hover:text-stone-500 transition-colors"
+              >
+                <XIcon size={16} />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
    FEATURES — Asymmetric 6-col bento with visualizations
    ═══════════════════════════════════════════════════════ */
 
@@ -553,10 +766,13 @@ function Features() {
               Approve the drafts
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              The emails that need your judgment already have responses
-              drafted in your voice — with the right lease clauses, payment
-              terms, and context pulled in. Read it, hit approve, or make
-              a quick edit. Nothing sends without you.
+              The emails that need your judgment come with drafted responses
+              in your voice, with the right lease clauses, payment terms, and
+              context pulled in. The system reads the full thread, not just
+              the latest message, so drafts have prior context and flagged
+              emails show the full conversation before you decide what to do.
+              Read it, hit approve, or make a quick edit. Nothing sends
+              without you.
             </p>
           </div>
 
@@ -581,34 +797,75 @@ function Features() {
 
             <div className="border-t border-stone-100" />
 
-            {/* Draft example */}
-            <div className="px-6 pt-4 pb-3 border-b border-stone-100">
-              <div className="flex items-center gap-2">
-                <span className="text-[11px] font-semibold px-1.5 py-0.5 rounded-md bg-blue-100 text-blue-700">Drafted for review</span>
-                <p className="text-[13px] text-stone-400">Waiting on your approval</p>
-              </div>
-            </div>
-            <div className="px-6 py-4 border-b border-stone-100">
-              <div className="flex items-center justify-between mb-1">
-                <p className="text-[13px] text-stone-400">From: T. Reeves — 901 Alhambra Blvd B</p>
-                <p className="text-[12px] text-stone-400 font-mono">↳ Thread: 3 messages</p>
-              </div>
-              <p className="text-[14px] font-semibold text-stone-800">Rent will be late this month</p>
-              <p className="text-[14px] text-stone-500 mt-2 leading-relaxed">Hi, I had an unexpected car repair and I won&apos;t be able to pay the full $1,600 until the 15th. Can I do a partial payment now?</p>
-            </div>
-            <div className="px-6 py-4 bg-blue-50/30">
-              <p className="text-[13px] text-blue-700 font-semibold mb-2">Draft response</p>
-              <p className="text-[14px] text-stone-600 leading-relaxed">Hi Tanya, thank you for letting us know ahead of time. Per your lease (Section 4.2), partial payments can be arranged with written agreement. I can accept $800 now with the remaining $800 due by the 15th. Please confirm and I&apos;ll send over the payment plan letter. Let me know if you have any questions.</p>
-              <div className="flex gap-2 mt-3">
-                <button className="text-[14px] font-semibold text-accent">Approve & Send</button>
-                <button className="text-[14px] font-semibold text-stone-400">Edit</button>
-              </div>
-            </div>
+            {/* Draft example with expandable thread */}
+            <EmailWithThread
+              badge={{ label: "Drafted for review", classes: "bg-blue-100 text-blue-700" }}
+              badgeMeta="Waiting on your approval"
+              priorMessages={[
+                {
+                  from: "T. Reeves",
+                  time: "Apr 15, 9:18 AM",
+                  body: "Hey, just a heads up that I might be a few days late with rent this month. Had a car issue come up. I'll know more by Friday.",
+                },
+                {
+                  from: "You",
+                  time: "Apr 15, 11:42 AM",
+                  body: "Thanks for the heads up Tanya. Let me know once you have a clearer picture and we can figure out next steps.",
+                },
+              ]}
+              current={{
+                from: "T. Reeves, 901 Alhambra Blvd B",
+                subject: "Rent will be late this month",
+                body: "Hi, I had an unexpected car repair and I won't be able to pay the full $1,600 until the 15th. Can I do a partial payment now?",
+              }}
+              response={{
+                tone: "draft",
+                label: "Draft response",
+                body: "Hi Tanya, thank you for letting us know ahead of time. Per your lease (Section 4.2), partial payments can be arranged with written agreement. I can accept $800 now with the remaining $800 due by the 15th. Please confirm and I'll send over the payment plan letter. Let me know if you have any questions.",
+                actions: { primary: "Approve & Send", secondary: "Edit" },
+              }}
+            />
+
+            <div className="border-t border-stone-100" />
+
+            {/* Owner-flagged example with expandable thread */}
+            <EmailWithThread
+              badge={{ label: "Owner-flagged", classes: "bg-red-100 text-red-700" }}
+              badgeMeta="Needs your decision"
+              priorMessages={[
+                {
+                  from: "M. Johnson",
+                  time: "Apr 14, 4:12 PM",
+                  body: "Hi, I see a charge on my owner statement for $875 for plumbing at 901 Alhambra A. What was this for?",
+                },
+                {
+                  from: "You",
+                  time: "Apr 15, 9:30 AM",
+                  body: "Hi Marcus, that was for a kitchen sink trap replacement after the tenant reported a leak two weeks ago. I'll forward you the invoice.",
+                },
+                {
+                  from: "Ace Plumbing (forwarded)",
+                  time: "Apr 15, 10:15 AM",
+                  body: "Invoice 4798: kitchen sink p-trap leak, replaced trap and valve assembly. Standard service call plus parts. $875.00.",
+                },
+              ]}
+              current={{
+                from: "M. Johnson, owner of 901 Alhambra A",
+                subject: "Why am I paying for that plumbing repair?",
+                body: "I thought tenant damage wasn't on me. Can you walk me through how the owner versus tenant responsibility works here? This is the third repair charge this quarter and I want to understand the pattern.",
+              }}
+              response={{
+                tone: "decision",
+                label: "Needs your decision",
+                body: "Owner is disputing a $875 plumbing expense. Lease assigns normal wear-and-tear repairs to owner, tenant-caused damage to tenant. Plumber notes do not indicate tenant fault. You decide whether to absorb, recharge, or split.",
+                actions: { primary: "Compose reply", secondary: "Snooze" },
+              }}
+            />
           </div>
         </motion.div>
         </ScrollFocus>
 
-        {/* 4 — Track what needs doing (visual left, text right — zigzag) */}
+        {/* 4 — Never forget a follow-up (visual left, text right — zigzag) */}
         <ScrollFocus>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -617,53 +874,25 @@ function Features() {
           transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
           className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center"
         >
-          <div className="order-2 md:order-1 bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
-            <div className="px-6 pt-5 pb-3 border-b border-stone-100">
-              <div className="flex items-center justify-between">
-                <p className="text-[13px] font-bold text-stone-900 tracking-tight">Today&apos;s Tasks</p>
-                <span className="text-[14px] font-mono text-stone-400">8 created · 3 due today</span>
-              </div>
-            </div>
-
-            {[
-              { title: "Send T. Reeves payment plan letter", source: "From draft you approved · 901 Alhambra B", due: "Today", tone: "red" },
-              { title: "Sign HAP renewal — 901 Alhambra B", source: "Owner-flagged · Fresno Housing Authority", due: "May 1", tone: "amber" },
-              { title: "Plumber follow-up — 2847 Freeport", source: "From Ace Plumbing invoice #4821", due: "Apr 19", tone: "amber" },
-              { title: "Call R. Chen re: 4015 El Camino sale", source: "Owner-flagged · management agreement impact", due: "This week", tone: "amber" },
-              { title: "Decide on D. Patel early termination", source: "Owner-flagged · 4401 Marconi", due: "Apr 21", tone: "stone" },
-              { title: "Review State Farm renewal (+12%)", source: "From insurance flag · 5540 Sky Pkwy", due: "Apr 22", tone: "stone" },
-            ].map((task, i) => (
-              <div key={i} className="px-6 py-3 border-b border-stone-50 flex items-start gap-3">
-                <div className={`w-2 h-2 rounded-full mt-2 shrink-0 ${
-                  task.tone === "red" ? "bg-red-500" : task.tone === "amber" ? "bg-amber-500" : "bg-stone-300"
-                }`} />
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <p className="text-[14px] font-semibold text-stone-800 truncate">{task.title}</p>
-                    <span className="text-[12px] font-mono text-stone-400 shrink-0">{task.due}</span>
-                  </div>
-                  <p className="text-[13px] text-stone-400 mt-0.5 truncate">{task.source}</p>
-                </div>
-              </div>
-            ))}
-
-            <div className="px-6 py-3 bg-stone-50/60 flex items-center justify-between">
-              <p className="text-[13px] text-stone-400">Completed this week</p>
-              <p className="text-[13px] font-mono text-emerald-600">17 done</p>
-            </div>
+          <div className="order-2 md:order-1">
+            <TasksDemo />
           </div>
 
           <div className="order-1 md:order-2">
-            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">7:08 AM</p>
+            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">Throughout the day</p>
             <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
-              Track what needs doing
+              Never forget a follow-up
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              Every approved draft, owner-flagged thread, and vendor
-              follow-up becomes a task with a due date — automatically.
-              You scan one list and see what&apos;s promised, what&apos;s blocked,
-              and what&apos;s already done. No more action items lost in the
-              inbox scroll.
+              Every email that creates an action item becomes a task. A
+              vendor promises a quote Friday, it becomes a task. An owner
+              asks about refinancing, it becomes a task. A housing
+              authority sets a deadline, it becomes a task with that
+              deadline.
+            </p>
+            <p className="text-lg text-stone-400 mt-4 leading-relaxed font-light max-w-lg">
+              You see them all in one place, with the email they came
+              from one click away. Mark complete as you go.
             </p>
           </div>
         </motion.div>
