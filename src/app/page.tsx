@@ -308,10 +308,10 @@ const categoryConfig: Record<string, { label: string; badgeColor: string }> = {
 };
 
 const categoryCounts: Record<string, number> = {
-  "auto-handled": 98,
+  "auto-handled": 25,
   "drafted": 12,
-  "routed": 14,
-  "owner": 5,
+  "routed": 9,
+  "owner": 4,
 };
 
 function InboxDemo() {
@@ -463,10 +463,10 @@ function Features() {
             <div className="px-6 py-4 border-b border-stone-100">
               <div className="grid grid-cols-4 gap-3">
                 {[
-                  { label: "Auto-handled", value: "98", color: "text-emerald-600" },
+                  { label: "Auto-handled", value: "25", color: "text-emerald-600" },
                   { label: "Drafted", value: "12", color: "text-blue-600" },
-                  { label: "Routed", value: "14", color: "text-amber-600" },
-                  { label: "Need you", value: "5", color: "text-red-600" },
+                  { label: "Routed", value: "9", color: "text-amber-600" },
+                  { label: "Need you", value: "4", color: "text-red-600" },
                 ].map((s) => (
                   <div key={s.label} className="bg-stone-50 rounded-lg p-2.5 text-center">
                     <p className={`text-[15px] font-bold font-mono ${s.color}`}>{s.value}</p>
@@ -535,7 +535,7 @@ function Features() {
               See what&apos;s handled
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              Scan the classified inbox. 98 emails already taken care of —
+              Scan the classified inbox. 25 emails already taken care of —
               maintenance confirmations sent, rent questions answered, policy
               requests approved. Click any category to filter. Every message
               color-coded so you know what was auto-handled, what&apos;s drafted,
