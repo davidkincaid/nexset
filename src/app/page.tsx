@@ -675,74 +675,7 @@ function Features() {
           </p>
         </motion.div>
 
-        {/* 1 — Open your digest (text left, visual right) */}
-        <ScrollFocus>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-32"
-        >
-          <div>
-            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">7:00 AM</p>
-            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
-              Open your digest
-            </h3>
-            <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              You sit down, open one email. The system ran 24/7 while you
-              were away — emergencies escalated via SMS the moment they came
-              in, routine emails auto-responded in real time, everything else
-              classified and queued. One view, full picture.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
-            <div className="px-6 pt-5 pb-3 border-b border-stone-100">
-              <div className="flex items-center justify-between">
-                <p className="text-[13px] font-bold text-stone-900 tracking-tight">Morning Digest</p>
-                <span className="text-[14px] font-mono text-stone-400">April 16, 2026 — 7:00 AM</span>
-              </div>
-            </div>
-
-            <div className="px-6 py-4 border-b border-stone-100">
-              <div className="grid grid-cols-4 gap-3">
-                {[
-                  { label: "Auto-handled", value: "24", color: "text-emerald-600" },
-                  { label: "Drafted", value: "12", color: "text-blue-600" },
-                  { label: "Routed", value: "9", color: "text-amber-600" },
-                  { label: "Need you", value: "5", color: "text-red-600" },
-                ].map((s) => (
-                  <div key={s.label} className="bg-stone-50 rounded-lg p-2.5 text-center">
-                    <p className={`text-[15px] font-bold font-mono ${s.color}`}>{s.value}</p>
-                    <p className="text-[13px] text-stone-400 mt-0.5">{s.label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="px-6 py-4">
-              <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-3">Needs your attention</p>
-              <div className="space-y-3">
-                {[
-                  { icon: "text-red-600", label: "Emergency", desc: "Water heater at 2205 Northgate — vendor dispatched 6:14 AM, tenant relocated to Unit 4 temporarily" },
-                  { icon: "text-stone-800", label: "Lease renewal", desc: "M. Johnson counter-offered $1,600 vs your proposed $1,700 at 901 Alhambra A. Draft response ready." },
-                  { icon: "text-stone-800", label: "Late rent", desc: "T. Reeves requesting partial payment plan ($800 now, $800 by 15th). Draft with lease clause 4.2 ready." },
-                  { icon: "text-stone-800", label: "Insurance", desc: "State Farm renewal for 5540 Sky Pkwy is +12% ($220/yr increase) — flagged for your review." },
-                  { icon: "text-stone-800", label: "Vacancy", desc: "1088 Fulton Ave — 52 days vacant. 3 new inquiries this week, 1 showing scheduled Saturday." },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-2.5 text-[13px]">
-                    <span className={`font-semibold shrink-0 ${item.icon}`}>{item.label}:</span>
-                    <span className="text-stone-600 leading-relaxed">{item.desc}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.div>
-        </ScrollFocus>
-
-        {/* 2 — See what's handled (visual left, text right — zigzag) */}
+        {/* 1 — See what's handled (visual left, text right) */}
         <ScrollFocus>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -756,22 +689,22 @@ function Features() {
           </div>
 
           <div className="order-1 md:order-2">
-            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">7:02 AM</p>
+            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">Overnight</p>
             <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
               See what&apos;s handled
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              Scan the classified inbox. 24 emails already taken care of —
+              Scan the classified inbox. 24 emails already taken care of:
               maintenance confirmations sent, rent questions answered, policy
               requests approved. Click any category to filter. Every message
-              color-coded so you know what was auto-handled, what&apos;s drafted,
-              what went to a VA, and what&apos;s waiting on you.
+              color-coded so you know what was auto-handled, what&apos;s
+              drafted, what got routed, and what&apos;s flagged for you.
             </p>
           </div>
         </motion.div>
         </ScrollFocus>
 
-        {/* 3 — Approve the drafts (text left, visual right) */}
+        {/* 2 — Approve the drafts (text left, visual right) */}
         <ScrollFocus>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -781,7 +714,7 @@ function Features() {
           className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-32"
         >
           <div>
-            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">7:05 AM</p>
+            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">By 7 AM</p>
             <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
               Approve the drafts
             </h3>
@@ -885,7 +818,104 @@ function Features() {
         </motion.div>
         </ScrollFocus>
 
-        {/* 4 — Never forget a follow-up (visual left, text right — zigzag) */}
+        {/* 3 — Open your digest (visual left, text right) */}
+        <ScrollFocus>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-32"
+        >
+          <div className="order-2 md:order-1 bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
+            <div className="px-6 pt-5 pb-3 border-b border-stone-100">
+              <div className="flex items-center justify-between">
+                <p className="text-[13px] font-bold text-stone-900 tracking-tight">Morning Digest</p>
+                <span className="text-[14px] font-mono text-stone-400">April 16, 2026 · 7:00 AM</span>
+              </div>
+            </div>
+
+            <div className="px-6 py-4 border-b border-stone-100">
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  { label: "Auto-handled", value: "24", color: "text-emerald-600" },
+                  { label: "Drafted", value: "12", color: "text-blue-600" },
+                  { label: "Routed", value: "9", color: "text-amber-600" },
+                ].map((s) => (
+                  <div key={s.label} className="bg-stone-50 rounded-lg p-2.5 text-center">
+                    <p className={`text-[15px] font-bold font-mono ${s.color}`}>{s.value}</p>
+                    <p className="text-[13px] text-stone-400 mt-0.5">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="px-6 py-4">
+              <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-4">Overnight Summary</p>
+
+              <div className="space-y-4">
+                <div>
+                  <p className="text-[13px] font-bold text-stone-800 mb-1.5">Handled (24 emails)</p>
+                  <ul className="space-y-1 ml-2">
+                    <li className="text-[13px] text-stone-600 leading-relaxed">12 rent receipt confirmations sent</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">8 maintenance request acknowledgments sent</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">3 application status responses sent</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">1 vendor payment confirmation sent</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <p className="text-[13px] font-bold text-stone-800 mb-1.5">Drafted for your review (12 emails)</p>
+                  <ul className="space-y-1 ml-2">
+                    <li className="text-[13px] text-stone-600 leading-relaxed">Lease renewal counter-offer at 901 Alhambra (M. Johnson proposed $1,600 vs your $1,700)</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">Late rent payment plan request from T. Reeves ($800 now, $800 by 15th)</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">State Farm insurance renewal at 5540 Sky Pkwy (+12%, $220/yr increase)</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">Owner question about Q1 expenses from K. Patel</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <p className="text-[13px] font-bold text-stone-800 mb-1.5">Routed to your team (9 emails)</p>
+                  <ul className="space-y-1 ml-2">
+                    <li className="text-[13px] text-stone-600 leading-relaxed">4 to Maria (bookkeeping)</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">3 to Carlos (maintenance)</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">2 to Jessica (admin)</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <p className="text-[13px] font-bold text-stone-800 mb-1.5">Escalated overnight (1 email)</p>
+                  <div className="ml-2 flex items-start gap-2 text-[13px]">
+                    <span className="font-semibold shrink-0 text-red-600">Emergency:</span>
+                    <span className="text-stone-600 leading-relaxed">Water heater at 2205 Northgate. Vendor dispatched 6:14 AM, tenant relocated to Unit 4 temporarily. SMS sent at 6:12 AM.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="order-1 md:order-2">
+            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">7:00 AM</p>
+            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
+              Open your digest
+            </h3>
+            <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
+              You sit down, open one email. The system ran 24/7 while you
+              were away. Emergencies escalated via SMS the moment they came
+              in. Routine emails auto-responded in real time. Everything
+              else classified, drafted, or routed.
+            </p>
+            <p className="text-lg text-stone-400 mt-4 leading-relaxed font-light max-w-lg">
+              This is the full recap. Nothing was filtered or ranked for
+              you. You see everything the system did overnight so you can
+              verify the work, catch any errors, and decide where to spend
+              your morning.
+            </p>
+          </div>
+        </motion.div>
+        </ScrollFocus>
+
+        {/* 4 — Never forget a follow-up (text left, visual right) */}
         <ScrollFocus>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -894,11 +924,7 @@ function Features() {
           transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
           className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center"
         >
-          <div className="order-2 md:order-1">
-            <TasksDemo />
-          </div>
-
-          <div className="order-1 md:order-2">
+          <div>
             <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">Throughout the day</p>
             <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
               Never forget a follow-up
@@ -914,6 +940,10 @@ function Features() {
               You see them all in one place, with the email they came
               from one click away. Mark complete as you go.
             </p>
+          </div>
+
+          <div>
+            <TasksDemo />
           </div>
         </motion.div>
         </ScrollFocus>
