@@ -552,7 +552,7 @@ function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-32"
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center"
         >
           <div>
             <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">7:05 AM</p>
@@ -608,80 +608,6 @@ function Features() {
                 <button className="text-[14px] font-semibold text-stone-400">Edit</button>
               </div>
             </div>
-          </div>
-        </motion.div>
-        </ScrollFocus>
-
-        {/* 4 — Check your team (visual left, text right — zigzag) */}
-        <ScrollFocus>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center"
-        >
-          <div className="order-2 md:order-1 bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
-            <div className="px-6 pt-5 pb-3 border-b border-stone-100">
-              <p className="text-[13px] font-bold text-stone-900 tracking-tight">VA Routing & Monitoring</p>
-            </div>
-
-            {[
-              { va: "Maria", role: "Bookkeeping", from: "Ace Plumbing", task: "Invoice #4821 — match to work order, verify amount, process in AppFolio", property: "2847 Freeport Blvd", badge: "bg-amber-100 text-amber-700" },
-              { va: "Jessica", role: "Admin", from: "State Farm", task: "Policy renewal — compare premium to last year (+12%), flag if above $200/yr increase", property: "5540 Sky Pkwy", badge: "bg-amber-100 text-amber-700" },
-              { va: "Carlos", role: "Maintenance", from: "M. Brooks", task: "Garage door follow-up — confirm vendor dispatch, get ETA, update tenant", property: "2205 Northgate Blvd", badge: "bg-amber-100 text-amber-700" },
-            ].map((item, i) => (
-              <div key={i} className="px-6 py-4 border-b border-stone-50">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-full bg-stone-100 flex items-center justify-center">
-                      <span className="text-[12px] font-bold text-stone-500">{item.va[0]}</span>
-                    </div>
-                    <div>
-                      <p className="text-[14px] font-semibold text-stone-800">{item.va}</p>
-                      <p className="text-[13px] text-stone-400">{item.role} VA</p>
-                    </div>
-                  </div>
-                  <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded-md ${item.badge}`}>Routed</span>
-                </div>
-                <div className="bg-stone-50 rounded-lg p-3 mt-1">
-                  <p className="text-[13px] text-stone-400 mb-1">From: {item.from} — {item.property}</p>
-                  <p className="text-[13px] text-stone-700 leading-relaxed">{item.task}</p>
-                </div>
-              </div>
-            ))}
-
-            <div className="px-6 py-4 bg-stone-50/60">
-              <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-2.5">
-                VA Inbox Monitor
-              </p>
-              <div className="space-y-2">
-                {[
-                  { alert: "Stalled thread", detail: "Maria — vendor invoice from Mar 28 has no reply (4 days)", tone: "text-amber-600" },
-                  { alert: "SLA breach", detail: "Jessica — insurance renewal response overdue by 48hrs", tone: "text-red-600" },
-                  { alert: "Pattern detected", detail: "3 tenants at 2205 Northgate reported hot water issues this week", tone: "text-red-600" },
-                ].map((a, i) => (
-                  <div key={i} className="flex items-start gap-2 text-[13px]">
-                    <span className={`font-semibold shrink-0 ${a.tone}`}>{a.alert}:</span>
-                    <span className="text-stone-600">{a.detail}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="order-1 md:order-2">
-            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">7:15 AM</p>
-            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
-              Check your team
-            </h3>
-            <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              See exactly what was routed to each VA — the email, the
-              property, the specific task. We monitor their inboxes read-only
-              and surface stalled threads, SLA breaches, and patterns across
-              properties — like three tenants in the same building all
-              reporting hot water issues the same week.
-            </p>
           </div>
         </motion.div>
         </ScrollFocus>
