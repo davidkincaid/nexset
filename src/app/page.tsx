@@ -277,27 +277,36 @@ function Hero() {
    INBOX DEMO — Interactive classified inbox
    ═══════════════════════════════════════════════════════ */
 
-const inboxEmails = [
+type InboxEmail = {
+  from: string;
+  subject: string;
+  time: string;
+  category: string;
+  preview: string;
+  thread?: string;
+};
+
+const inboxEmails: InboxEmail[] = [
   { from: "D. Patel", subject: "Can I install a Ring doorbell?", time: "7:24 AM", category: "auto-handled", preview: "Auto-replied: approved per modification policy, no drilling into stucco" },
   { from: "M. Brooks", subject: "Garage door won't close", time: "6:55 AM", category: "auto-handled", preview: "Auto-replied: work order created, vendor dispatched within 24hrs" },
   { from: "R. Chen", subject: "When is my March distribution?", time: "6:48 AM", category: "auto-handled", preview: "Auto-replied: $12,000 processed March 28, arrives in 1-2 business days" },
   { from: "A. Brennan", subject: "Locked out — can someone let me in?", time: "6:30 AM", category: "auto-handled", preview: "Auto-replied: locksmith dispatched, after-hours lockout fee per lease Section 9.1" },
   { from: "S. Delgado", subject: "What's the move-out process?", time: "5:58 AM", category: "auto-handled", preview: "Auto-replied: 30-day written notice, move-out inspection checklist attached" },
-  { from: "T. Reeves", subject: "Rent will be late this month", time: "7:42 AM", category: "drafted", preview: "Draft ready — payment plan language, references lease clause 4.2" },
-  { from: "M. Johnson", subject: "RE: Lease renewal — 901 Alhambra A", time: "7:31 AM", category: "drafted", preview: "Draft ready — counter-offer response at $1,650, split the difference" },
-  { from: "R. Chen", subject: "Why is there a $1,200 charge on my statement?", time: "7:10 AM", category: "drafted", preview: "Draft ready — explains security deposit held in trust, not part of disbursement" },
-  { from: "K. Pham", subject: "Requesting early lease termination", time: "6:44 AM", category: "drafted", preview: "Draft ready — early termination clause 12.3, two months notice + fee" },
-  { from: "J. Whitmore", subject: "Neighbor's dog barking all night", time: "6:20 AM", category: "drafted", preview: "Draft ready — noise complaint acknowledgment, references pet policy and next steps" },
+  { from: "T. Reeves", subject: "Rent will be late this month", time: "7:42 AM", category: "drafted", preview: "Draft ready — payment plan language, references lease clause 4.2", thread: "Thread: 3 messages" },
+  { from: "M. Johnson", subject: "RE: Lease renewal — 901 Alhambra A", time: "7:31 AM", category: "drafted", preview: "Draft ready — counter-offer response at $1,650, split the difference", thread: "Thread: 6 messages" },
+  { from: "R. Chen", subject: "Why is there a $1,200 charge on my statement?", time: "7:10 AM", category: "drafted", preview: "Draft ready — explains security deposit held in trust, not part of disbursement", thread: "Thread: 2 messages" },
+  { from: "K. Pham", subject: "Requesting early lease termination", time: "6:44 AM", category: "drafted", preview: "Draft ready — early termination clause 12.3, two months notice + fee", thread: "Thread: 4 messages" },
+  { from: "J. Whitmore", subject: "Neighbor's dog barking all night", time: "6:20 AM", category: "drafted", preview: "Draft ready — noise complaint acknowledgment, references pet policy and next steps", thread: "Thread: 5 messages" },
   { from: "Ace Plumbing", subject: "Invoice #4821 — 2847 Freeport water heater", time: "7:38 AM", category: "routed", preview: "Sent to Maria (bookkeeping VA) with AppFolio work order match" },
   { from: "State Farm", subject: "Policy renewal — 5540 Sky Pkwy", time: "7:18 AM", category: "routed", preview: "Sent to Jessica (admin VA) — premium comparison flagged (+12%)" },
   { from: "Pro Handyman Svc", subject: "Scheduling confirmation — 3312 Stockton", time: "6:40 AM", category: "routed", preview: "Sent to Carlos (maintenance VA) — confirm tenant access window" },
   { from: "N. Udoh", subject: "Application submitted — 1088 Fulton Ave", time: "6:15 AM", category: "routed", preview: "Sent to Leasing VA — run screening, verify employment, check rental history" },
   { from: "City of Sacramento", subject: "Code compliance notice — 2847 Freeport", time: "5:45 AM", category: "routed", preview: "Sent to Jessica (admin VA) — respond by April 28, sidewalk vegetation issue" },
-  { from: "2205 Northgate tenant", subject: "Water heater leaking badly", time: "6:12 AM", category: "owner", preview: "Emergency detected — vendor auto-dispatched, you were texted immediately" },
-  { from: "R. Chen", subject: "Thinking about selling 4015 El Camino", time: "11:22 PM", category: "owner", preview: "Owner considering sale — impacts management agreement, needs your call" },
-  { from: "M. Johnson", subject: "Why am I paying for that plumbing repair?", time: "10:48 PM", category: "owner", preview: "Owner disputing $875 expense — wants explanation of owner vs tenant responsibility" },
-  { from: "Fresno Housing Authority", subject: "HAP contract renewal — 901 Alhambra B", time: "4:30 PM", category: "owner", preview: "Section 8 contract renewal requires your signature — deadline May 1" },
-  { from: "D. Patel", subject: "I want to break my lease — job relocation", time: "3:15 PM", category: "owner", preview: "Tenant requesting immediate termination, needs your decision on penalty vs negotiation" },
+  { from: "2205 Northgate tenant", subject: "Water heater leaking badly", time: "6:12 AM", category: "owner", preview: "Emergency detected — vendor auto-dispatched, you were texted immediately", thread: "Thread: 7 messages — vendor + tenant" },
+  { from: "R. Chen", subject: "Thinking about selling 4015 El Camino", time: "11:22 PM", category: "owner", preview: "Owner considering sale — impacts management agreement, needs your call", thread: "Thread: 2 messages" },
+  { from: "M. Johnson", subject: "Why am I paying for that plumbing repair?", time: "10:48 PM", category: "owner", preview: "Owner disputing $875 expense — wants explanation of owner vs tenant responsibility", thread: "Thread: 4 messages" },
+  { from: "Fresno Housing Authority", subject: "HAP contract renewal — 901 Alhambra B", time: "4:30 PM", category: "owner", preview: "Section 8 contract renewal requires your signature — deadline May 1", thread: "Thread: 3 messages" },
+  { from: "D. Patel", subject: "I want to break my lease — job relocation", time: "3:15 PM", category: "owner", preview: "Tenant requesting immediate termination, needs your decision on penalty vs negotiation", thread: "Thread: 2 messages" },
 ];
 
 const categoryConfig: Record<string, { label: string; badgeColor: string }> = {
@@ -308,10 +317,10 @@ const categoryConfig: Record<string, { label: string; badgeColor: string }> = {
 };
 
 const categoryCounts: Record<string, number> = {
-  "auto-handled": 25,
+  "auto-handled": 24,
   "drafted": 12,
   "routed": 9,
-  "owner": 4,
+  "owner": 5,
 };
 
 function InboxDemo() {
@@ -390,6 +399,9 @@ function InboxDemo() {
                 </div>
                 <p className="text-[13px] text-stone-600 truncate">{email.subject}</p>
                 <p className="text-[13px] text-stone-400 truncate mt-0.5">{email.preview}</p>
+                {email.thread && (
+                  <p className="text-[12px] text-stone-400 font-mono mt-1">↳ {email.thread}</p>
+                )}
               </div>
             ))}
             {totalForTab > shownCount && (
@@ -463,10 +475,10 @@ function Features() {
             <div className="px-6 py-4 border-b border-stone-100">
               <div className="grid grid-cols-4 gap-3">
                 {[
-                  { label: "Auto-handled", value: "25", color: "text-emerald-600" },
+                  { label: "Auto-handled", value: "24", color: "text-emerald-600" },
                   { label: "Drafted", value: "12", color: "text-blue-600" },
                   { label: "Routed", value: "9", color: "text-amber-600" },
-                  { label: "Need you", value: "4", color: "text-red-600" },
+                  { label: "Need you", value: "5", color: "text-red-600" },
                 ].map((s) => (
                   <div key={s.label} className="bg-stone-50 rounded-lg p-2.5 text-center">
                     <p className={`text-[15px] font-bold font-mono ${s.color}`}>{s.value}</p>
@@ -476,38 +488,19 @@ function Features() {
               </div>
             </div>
 
-            <div className="px-6 py-4 border-b border-stone-100">
+            <div className="px-6 py-4">
               <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-3">Needs your attention</p>
               <div className="space-y-3">
                 {[
                   { icon: "text-red-600", label: "Emergency", desc: "Water heater at 2205 Northgate — vendor dispatched 6:14 AM, tenant relocated to Unit 4 temporarily" },
                   { icon: "text-stone-800", label: "Lease renewal", desc: "M. Johnson counter-offered $1,600 vs your proposed $1,700 at 901 Alhambra A. Draft response ready." },
                   { icon: "text-stone-800", label: "Late rent", desc: "T. Reeves requesting partial payment plan ($800 now, $800 by 15th). Draft with lease clause 4.2 ready." },
-                  { icon: "text-stone-800", label: "Insurance", desc: "State Farm renewal for 5540 Sky Pkwy is +12% ($220/yr increase). Jessica flagged for your review." },
+                  { icon: "text-stone-800", label: "Insurance", desc: "State Farm renewal for 5540 Sky Pkwy is +12% ($220/yr increase) — flagged for your review." },
                   { icon: "text-stone-800", label: "Vacancy", desc: "1088 Fulton Ave — 52 days vacant. 3 new inquiries this week, 1 showing scheduled Saturday." },
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-2.5 text-[13px]">
                     <span className={`font-semibold shrink-0 ${item.icon}`}>{item.label}:</span>
                     <span className="text-stone-600 leading-relaxed">{item.desc}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="px-6 py-4">
-              <p className="text-[13px] text-stone-400 uppercase tracking-[0.15em] font-semibold mb-3">VA performance</p>
-              <div className="space-y-2">
-                {[
-                  { va: "Maria (Bookkeeping)", resolved: "14", stalled: "1", tone: "emerald" },
-                  { va: "Jessica (Admin)", resolved: "9", stalled: "1", tone: "amber" },
-                  { va: "Carlos (Maintenance)", resolved: "11", stalled: "1", tone: "amber" },
-                ].map((v) => (
-                  <div key={v.va} className="flex items-center justify-between text-[13px]">
-                    <span className="text-stone-700">{v.va}</span>
-                    <div className="flex items-center gap-3">
-                      <span className="font-mono text-emerald-600">{v.resolved} resolved</span>
-                      <span className={`font-mono ${v.tone === "amber" ? "text-amber-600" : "text-stone-400"}`}>{v.stalled} stalled</span>
-                    </div>
                   </div>
                 ))}
               </div>
@@ -535,7 +528,7 @@ function Features() {
               See what&apos;s handled
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              Scan the classified inbox. 25 emails already taken care of —
+              Scan the classified inbox. 24 emails already taken care of —
               maintenance confirmations sent, rent questions answered, policy
               requests approved. Click any category to filter. Every message
               color-coded so you know what was auto-handled, what&apos;s drafted,
@@ -552,7 +545,7 @@ function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center"
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-32"
         >
           <div>
             <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">7:05 AM</p>
@@ -596,7 +589,10 @@ function Features() {
               </div>
             </div>
             <div className="px-6 py-4 border-b border-stone-100">
-              <p className="text-[13px] text-stone-400 mb-1">From: T. Reeves — 901 Alhambra Blvd B</p>
+              <div className="flex items-center justify-between mb-1">
+                <p className="text-[13px] text-stone-400">From: T. Reeves — 901 Alhambra Blvd B</p>
+                <p className="text-[12px] text-stone-400 font-mono">↳ Thread: 3 messages</p>
+              </div>
               <p className="text-[14px] font-semibold text-stone-800">Rent will be late this month</p>
               <p className="text-[14px] text-stone-500 mt-2 leading-relaxed">Hi, I had an unexpected car repair and I won&apos;t be able to pay the full $1,600 until the 15th. Can I do a partial payment now?</p>
             </div>
@@ -608,6 +604,67 @@ function Features() {
                 <button className="text-[14px] font-semibold text-stone-400">Edit</button>
               </div>
             </div>
+          </div>
+        </motion.div>
+        </ScrollFocus>
+
+        {/* 4 — Track what needs doing (visual left, text right — zigzag) */}
+        <ScrollFocus>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center"
+        >
+          <div className="order-2 md:order-1 bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
+            <div className="px-6 pt-5 pb-3 border-b border-stone-100">
+              <div className="flex items-center justify-between">
+                <p className="text-[13px] font-bold text-stone-900 tracking-tight">Today&apos;s Tasks</p>
+                <span className="text-[14px] font-mono text-stone-400">8 created · 3 due today</span>
+              </div>
+            </div>
+
+            {[
+              { title: "Send T. Reeves payment plan letter", source: "From draft you approved · 901 Alhambra B", due: "Today", tone: "red" },
+              { title: "Sign HAP renewal — 901 Alhambra B", source: "Owner-flagged · Fresno Housing Authority", due: "May 1", tone: "amber" },
+              { title: "Plumber follow-up — 2847 Freeport", source: "From Ace Plumbing invoice #4821", due: "Apr 19", tone: "amber" },
+              { title: "Call R. Chen re: 4015 El Camino sale", source: "Owner-flagged · management agreement impact", due: "This week", tone: "amber" },
+              { title: "Decide on D. Patel early termination", source: "Owner-flagged · 4401 Marconi", due: "Apr 21", tone: "stone" },
+              { title: "Review State Farm renewal (+12%)", source: "From insurance flag · 5540 Sky Pkwy", due: "Apr 22", tone: "stone" },
+            ].map((task, i) => (
+              <div key={i} className="px-6 py-3 border-b border-stone-50 flex items-start gap-3">
+                <div className={`w-2 h-2 rounded-full mt-2 shrink-0 ${
+                  task.tone === "red" ? "bg-red-500" : task.tone === "amber" ? "bg-amber-500" : "bg-stone-300"
+                }`} />
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="text-[14px] font-semibold text-stone-800 truncate">{task.title}</p>
+                    <span className="text-[12px] font-mono text-stone-400 shrink-0">{task.due}</span>
+                  </div>
+                  <p className="text-[13px] text-stone-400 mt-0.5 truncate">{task.source}</p>
+                </div>
+              </div>
+            ))}
+
+            <div className="px-6 py-3 bg-stone-50/60 flex items-center justify-between">
+              <p className="text-[13px] text-stone-400">Completed this week</p>
+              <p className="text-[13px] font-mono text-emerald-600">17 done</p>
+            </div>
+          </div>
+
+          <div className="order-1 md:order-2">
+            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">7:08 AM</p>
+            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
+              Track what needs doing
+            </h3>
+            <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
+              Every approved draft, owner-flagged thread, and vendor
+              follow-up becomes a task with a due date — automatically.
+              You scan one list and see what&apos;s promised, what&apos;s blocked,
+              and what&apos;s already done. No more action items lost in the
+              inbox scroll.
+            </p>
           </div>
         </motion.div>
         </ScrollFocus>
