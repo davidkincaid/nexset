@@ -772,11 +772,6 @@ function Features() {
               system ran 24/7 while you were away, triaging the overnight
               email so you don&apos;t have to.
             </p>
-            <p className="text-lg text-stone-400 mt-4 leading-relaxed font-light max-w-lg">
-              Drill into any section when you want the detail. Nothing is
-              filtered or hidden, so you can verify the work, catch errors,
-              and decide where to spend your morning.
-            </p>
           </div>
         </motion.div>
         </ScrollFocus>
