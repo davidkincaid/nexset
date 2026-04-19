@@ -687,7 +687,7 @@ function Features() {
           <div className="order-2 md:order-1 bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
             <div className="px-6 pt-5 pb-4 border-b border-stone-100">
               <p className="text-[20px] font-extrabold tracking-tight text-stone-900 leading-tight">
-                Good morning, Fatima
+                Good morning, David
               </p>
               <p className="text-[13px] text-stone-400 font-mono mt-1">April 19, 2026 · 7:00 AM</p>
             </div>
