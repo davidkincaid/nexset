@@ -288,47 +288,41 @@ type InboxEmail = {
 };
 
 const inboxEmails: InboxEmail[] = [
-  { from: "M. Brooks", subject: "Garage door won't close", time: "6:55 AM", category: "auto-handled", preview: "Auto-replied: work order created, vendor dispatched within 24hrs" },
-  { from: "R. Chen", subject: "When is my March distribution?", time: "6:48 AM", category: "auto-handled", preview: "Auto-replied: $12,000 processed March 28, arrives in 1-2 business days" },
-  { from: "A. Brennan", subject: "Locked out — can someone let me in?", time: "6:30 AM", category: "auto-handled", preview: "Auto-replied: locksmith dispatched, after-hours lockout fee per lease Section 9.1" },
-  { from: "D. Patel", subject: "Can I install a Ring doorbell?", time: "6:24 AM", category: "auto-handled", preview: "Auto-replied: approved per modification policy, no drilling into stucco" },
-  { from: "S. Delgado", subject: "What's the move-out process?", time: "5:58 AM", category: "auto-handled", preview: "Auto-replied: 30-day written notice, move-out inspection checklist attached" },
-  { from: "K. Pham", subject: "Requesting early lease termination", time: "6:44 AM", category: "drafted", preview: "Draft ready — early termination clause 12.3, two months notice + fee", thread: "Thread: 4 messages" },
-  { from: "T. Reeves", subject: "Rent will be late this month", time: "6:42 AM", category: "drafted", preview: "Draft ready — payment plan language, references lease clause 4.2", thread: "Thread: 3 messages" },
-  { from: "M. Johnson", subject: "RE: Lease renewal — 901 Alhambra A", time: "6:35 AM", category: "drafted", preview: "Draft ready — counter-offer response at $1,650, split the difference", thread: "Thread: 6 messages" },
-  { from: "J. Whitmore", subject: "Neighbor's dog barking all night", time: "6:20 AM", category: "drafted", preview: "Draft ready — noise complaint acknowledgment, references pet policy and next steps", thread: "Thread: 5 messages" },
-  { from: "R. Chen", subject: "Why is there a $1,200 charge on my statement?", time: "6:10 AM", category: "drafted", preview: "Draft ready — explains security deposit held in trust, not part of disbursement", thread: "Thread: 2 messages" },
-  { from: "Pro Handyman Svc", subject: "Scheduling confirmation — 3312 Stockton", time: "6:40 AM", category: "routed", preview: "Sent to Carlos (maintenance VA) — confirm tenant access window" },
-  { from: "Ace Plumbing", subject: "Invoice #4821 — 2847 Freeport water heater", time: "6:38 AM", category: "routed", preview: "Sent to Maria (bookkeeping VA) with AppFolio work order match" },
-  { from: "State Farm", subject: "Policy renewal — 5540 Sky Pkwy", time: "6:18 AM", category: "routed", preview: "Sent to Jessica (admin VA) — premium comparison flagged (+12%)" },
-  { from: "N. Udoh", subject: "Application submitted — 1088 Fulton Ave", time: "6:15 AM", category: "routed", preview: "Sent to Leasing VA — run screening, verify employment, check rental history" },
-  { from: "City of Sacramento", subject: "Code compliance notice — 2847 Freeport", time: "5:45 AM", category: "routed", preview: "Sent to Jessica (admin VA) — respond by April 28, sidewalk vegetation issue" },
-  { from: "2205 Northgate tenant", subject: "Water heater leaking badly", time: "6:12 AM", category: "owner", preview: "Emergency detected — vendor auto-dispatched, you were texted immediately", thread: "Thread: 7 messages — vendor + tenant" },
-  { from: "R. Chen", subject: "Thinking about selling 4015 El Camino", time: "11:22 PM", category: "owner", preview: "Owner considering sale — impacts management agreement, needs your call", thread: "Thread: 2 messages" },
-  { from: "M. Johnson", subject: "Why am I paying for that plumbing repair?", time: "10:48 PM", category: "owner", preview: "Owner disputing $875 expense — wants explanation of owner vs tenant responsibility", thread: "Thread: 4 messages" },
-  { from: "Fresno Housing Authority", subject: "HAP contract renewal — 901 Alhambra B", time: "4:30 PM", category: "owner", preview: "Section 8 contract renewal requires your signature — deadline May 1", thread: "Thread: 3 messages" },
-  { from: "D. Patel", subject: "I want to break my lease — job relocation", time: "3:15 PM", category: "owner", preview: "Tenant requesting immediate termination, needs your decision on penalty vs negotiation", thread: "Thread: 2 messages" },
+  { from: "ADP Payroll", subject: "Bi-weekly payroll report, pay period ending April 12", time: "6:58 AM", category: "routed", preview: "Sent to Maria (bookkeeping), review and file" },
+  { from: "L. Gomez", subject: "Quick question about the pet policy", time: "6:55 AM", category: "auto-handled", preview: "Auto-replied: pet policy PDF sent, one dog under 30lbs allowed with deposit" },
+  { from: "Wells Fargo Business", subject: "Deposit notification, $47,320 to operating account", time: "6:52 AM", category: "routed", preview: "Sent to Maria (bookkeeping), reconcile with April rent roll" },
+  { from: "M. Johnson", subject: "RE: Lease renewal at 901 Alhambra A", time: "6:50 AM", category: "drafted", preview: "Draft ready, counter-offer at $1,650 between their $1,600 and your $1,700", thread: "Thread: 6 messages" },
+  { from: "M. Nguyen", subject: "Can't log into the tenant portal", time: "6:48 AM", category: "auto-handled", preview: "Auto-replied: password reset link sent, portal walkthrough included" },
+  { from: "K. Patel", subject: "What's the $875 plumbing charge at 3312 Stockton?", time: "6:42 AM", category: "drafted", preview: "Draft ready, line-by-line breakdown of March plumbing work", thread: "Thread: 3 messages" },
+  { from: "Pro Handyman Svc", subject: "Scheduling confirmation, 3312 Stockton", time: "6:40 AM", category: "routed", preview: "Sent to Carlos (maintenance), confirm tenant access window" },
+  { from: "HACLA", subject: "Recertification paperwork request, 2847 Freeport", time: "6:35 AM", category: "drafted", preview: "Draft ready, forms being prepared, submission targeted for April 26", thread: "Thread: 2 messages" },
+  { from: "K. Patel", subject: "Can you resend March owner statement?", time: "6:30 AM", category: "auto-handled", preview: "Auto-replied: PDF regenerated, also available in owner portal" },
+  { from: "State Farm", subject: "Renewal review, 5540 Sky Pkwy", time: "6:28 AM", category: "drafted", preview: "Draft ready, 3 competing quotes pulled for comparison at +12% ask", thread: "Thread: 4 messages" },
+  { from: "R. Singh", subject: "When is my next distribution?", time: "6:24 AM", category: "auto-handled", preview: "Auto-replied: next distribution April 28, 2-3 day ACH" },
+  { from: "State Farm", subject: "Policy renewal, 5540 Sky Pkwy", time: "6:20 AM", category: "routed", preview: "Sent to Jessica (admin), premium comparison flagged at +12%" },
+  { from: "HACLA", subject: "Recertification docs received, 2847 Freeport", time: "6:15 AM", category: "routed", preview: "Sent to Jessica (admin), file in tenant folder" },
+  { from: "ADP Payroll", subject: "Onboarding question, new maintenance tech", time: "6:10 AM", category: "drafted", preview: "Draft ready, payroll setup info and IRS forms attached", thread: "Thread: 2 messages" },
+  { from: "PG&E", subject: "Service transfer confirmation, 901 Alhambra Blvd C", time: "5:58 AM", category: "auto-handled", preview: "Auto-logged: transfer effective April 15, tenant name updated in records" },
+  { from: "City of Sacramento", subject: "Code compliance notice, 2847 Freeport", time: "5:45 AM", category: "routed", preview: "Sent to Jessica (admin), respond by April 28, sidewalk vegetation issue" },
 ];
 
 const categoryConfig: Record<string, { label: string; badgeColor: string }> = {
   "auto-handled": { label: "Auto-handled", badgeColor: "bg-emerald-100 text-emerald-700" },
   "drafted": { label: "Drafted", badgeColor: "bg-blue-100 text-blue-700" },
-  "routed": { label: "Routed to VA", badgeColor: "bg-amber-100 text-amber-700" },
-  "owner": { label: "Owner", badgeColor: "bg-red-100 text-red-700" },
+  "routed": { label: "Routed to team", badgeColor: "bg-amber-100 text-amber-700" },
 };
 
 const categoryCounts: Record<string, number> = {
-  "auto-handled": 24,
-  "drafted": 12,
-  "routed": 9,
-  "owner": 5,
+  "auto-handled": 8,
+  "drafted": 18,
+  "routed": 6,
 };
 
 function InboxDemo() {
   const [activeTab, setActiveTab] = useState<string>("all");
   const totalEmails = Object.values(categoryCounts).reduce((a, b) => a + b, 0);
 
-  const maxVisible = 5;
+  const maxVisible = 6;
   const filteredEmails = activeTab === "all"
     ? inboxEmails.slice(0, maxVisible)
     : inboxEmails.filter((e) => e.category === activeTab).slice(0, maxVisible);
@@ -536,32 +530,32 @@ const taskTabs = [
 type Task = { tab: string; title: string; from: string; due: string };
 
 const allTasks: Task[] = [
-  // Due Today (spec tasks marked Today + fill-ins to reach 5)
-  { tab: "today", title: "Review lease counter-offer at 901 Alhambra", from: "M. Johnson — proposed $1,600 vs your $1,700", due: "Today" },
-  { tab: "today", title: "Confirm vendor ETA with tenant at 2205 Northgate", from: "Ace Plumbing — garage door follow-up", due: "Today" },
-  { tab: "today", title: "Approve T. Reeves payment plan reply", from: "T. Reeves — 901 Alhambra Blvd B", due: "Today" },
-  { tab: "today", title: "Decide on D. Patel early termination", from: "D. Patel — 4401 Marconi", due: "Today" },
-  { tab: "today", title: "Sign State Farm renewal pre-approval", from: "State Farm — 5540 Sky Pkwy", due: "Today" },
+  // Due Today
+  { tab: "today", title: "Confirm payroll adjustment for new maintenance tech", from: "ADP, onboarding question", due: "Today" },
+  { tab: "today", title: "Review lease counter-offer at 901 Alhambra", from: "M. Johnson, proposed $1,600 vs your $1,700", due: "Today" },
+  { tab: "today", title: "Respond to K. Patel on Q1 expense breakdown", from: "K. Patel, 3312 Stockton plumbing cost", due: "Today" },
+  { tab: "today", title: "Respond to HACLA on recertification paperwork", from: "HACLA, tenant at 2847 Freeport", due: "Today" },
+  { tab: "today", title: "Confirm vendor ETA with tenant at 2205 Northgate", from: "Ace Plumbing, garage door follow-up", due: "Today" },
 
   // This Week
-  { tab: "week", title: "Follow up with State Farm on insurance quote", from: "State Farm email — 5540 Sky Pkwy renewal", due: "Friday, April 19" },
-  { tab: "week", title: "Get refinancing comp for M. Johnson", from: "M. Johnson — 901 Alhambra", due: "This week" },
+  { tab: "week", title: "Follow up with State Farm on insurance quote comparison", from: "State Farm, 5540 Sky Pkwy renewal", due: "Friday, April 19" },
+  { tab: "week", title: "Get owner approval for Q1 expense variance", from: "K. Patel, 3312 Stockton plumbing cost", due: "This week" },
   { tab: "week", title: "Schedule plumber follow-up at 2847 Freeport", from: "Ace Plumbing invoice 4821", due: "Saturday, April 19" },
-  { tab: "week", title: "Call R. Chen re: 4015 El Camino sale", from: "Owner inquiry — sale impacts management agreement", due: "Tuesday, April 22" },
-  { tab: "week", title: "Run N. Udoh application screening", from: "Leasing pipeline — 1088 Fulton Ave", due: "Sunday, April 20" },
+  { tab: "week", title: "Call R. Chen re: 5540 Sky Pkwy sale", from: "Owner inquiry, management agreement impact", due: "Tuesday, April 22" },
+  { tab: "week", title: "Run N. Udoh application screening", from: "Leasing pipeline, new applicant", due: "Sunday, April 20" },
 
   // Later
-  { tab: "later", title: "Prepare recertification docs for housing authority", from: "HACLA — tenant at 2847 Freeport", due: "April 28" },
+  { tab: "later", title: "Prepare recertification docs for HACLA", from: "HACLA, tenant at 2847 Freeport", due: "April 28" },
+  { tab: "later", title: "Review and respond to code compliance notice", from: "City of Sacramento, 2847 Freeport vegetation issue", due: "April 28" },
   { tab: "later", title: "Sign HAP renewal at 901 Alhambra B", from: "Fresno Housing Authority", due: "May 1" },
   { tab: "later", title: "Q2 owner statement review for R. Chen", from: "Bookkeeping cycle", due: "May 5" },
-  { tab: "later", title: "Annual rent increase letters batch", from: "4401 Marconi + 3 properties", due: "May 15" },
-  { tab: "later", title: "Property tax review", from: "Sacramento County assessor", due: "June 1" },
+  { tab: "later", title: "Annual rent increase letters batch", from: "4401 Marconi plus 3 properties", due: "May 15" },
 
   // Completed
   { tab: "done", title: "Sent A. Brennan locksmith dispatch confirmation", from: "After-hours lockout request", due: "Completed Apr 17" },
   { tab: "done", title: "Logged Pro Handyman scheduling at 3312 Stockton", from: "Vendor confirmation", due: "Completed Apr 17" },
   { tab: "done", title: "Replied to S. Delgado on move-out process", from: "Tenant inquiry", due: "Completed Apr 17" },
-  { tab: "done", title: "Approved K. Pham early termination response", from: "K. Pham — 1432 Capitol Ave", due: "Completed Apr 16" },
+  { tab: "done", title: "Approved K. Pham early termination response", from: "K. Pham, 1432 Capitol Ave", due: "Completed Apr 16" },
   { tab: "done", title: "Sent J. Whitmore noise complaint acknowledgment", from: "Pet policy reference attached", due: "Completed Apr 16" },
 ];
 
@@ -695,9 +689,9 @@ function Features() {
             <div className="px-6 py-4 border-b border-stone-100">
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { label: "Auto-handled", value: "24", color: "text-emerald-600" },
-                  { label: "Drafted", value: "12", color: "text-blue-600" },
-                  { label: "Routed", value: "9", color: "text-amber-600" },
+                  { label: "Auto-handled", value: "8", color: "text-emerald-600" },
+                  { label: "Drafted", value: "18", color: "text-blue-600" },
+                  { label: "Routed", value: "6", color: "text-amber-600" },
                 ].map((s) => (
                   <div key={s.label} className="bg-stone-50 rounded-lg p-2.5 text-center">
                     <p className={`text-[15px] font-bold font-mono ${s.color}`}>{s.value}</p>
@@ -713,39 +707,42 @@ function Features() {
               <div className="space-y-4">
                 <div>
                   <div className="flex items-baseline justify-between mb-1.5">
-                    <p className="text-[13px] font-bold text-stone-800">Handled (24 emails)</p>
+                    <p className="text-[13px] font-bold text-stone-800">Handled (8 emails)</p>
                     <button className="text-[12px] text-accent font-semibold hover:underline">View all →</button>
                   </div>
                   <ul className="space-y-1 ml-2">
-                    <li className="text-[13px] text-stone-600 leading-relaxed">12 rent receipt confirmations sent</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">8 maintenance request acknowledgments sent</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">3 application status responses sent</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">1 vendor payment confirmation sent</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">2 tenant FAQ responses sent (pet policy, portal access help)</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">2 owner statement requests fulfilled (K. Patel March resend, R. Singh next draw date)</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">1 ADP payroll notification acknowledged and routed</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">1 banking deposit confirmation logged</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">1 insurance broker renewal reminder acknowledged and flagged</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">1 utility company service confirmation logged</li>
                   </ul>
                 </div>
 
                 <div>
                   <div className="flex items-baseline justify-between mb-1.5">
-                    <p className="text-[13px] font-bold text-stone-800">Drafted for your review (12 emails)</p>
+                    <p className="text-[13px] font-bold text-stone-800">Drafted for your review (18 emails)</p>
                     <button className="text-[12px] text-accent font-semibold hover:underline">View all →</button>
                   </div>
                   <ul className="space-y-1 ml-2">
                     <li className="text-[13px] text-stone-600 leading-relaxed">Lease renewal counter-offer at 901 Alhambra (M. Johnson proposed $1,600 vs your $1,700)</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">Late rent payment plan request from T. Reeves ($800 now, $800 by 15th)</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">State Farm insurance renewal at 5540 Sky Pkwy (+12%, $220/yr increase)</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">Owner question about Q1 expenses from K. Patel</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">Owner question about Q1 expense breakdown from K. Patel (unusual plumbing cost at 3312 Stockton)</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">HACLA recertification paperwork request, tenant at 2847 Freeport, due April 28</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">State Farm insurance renewal at 5540 Sky Pkwy (+12%, $220/yr increase), flagged for your review</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">ADP onboarding question about new maintenance tech</li>
                   </ul>
                 </div>
 
                 <div>
                   <div className="flex items-baseline justify-between mb-1.5">
-                    <p className="text-[13px] font-bold text-stone-800">Routed to your team (9 emails)</p>
+                    <p className="text-[13px] font-bold text-stone-800">Routed to your team (6 emails)</p>
                     <button className="text-[12px] text-accent font-semibold hover:underline">View all →</button>
                   </div>
                   <ul className="space-y-1 ml-2">
-                    <li className="text-[13px] text-stone-600 leading-relaxed">4 to Maria (bookkeeping)</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">3 to Carlos (maintenance)</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">2 to Jessica (admin)</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">2 to Maria (bookkeeping): payroll report, deposit notification</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">3 to Jessica (admin): insurance policy renewal, recertification filing, code compliance notice</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">1 to Carlos (maintenance): handyman scheduling confirmation</li>
                   </ul>
                 </div>
 
@@ -790,12 +787,11 @@ function Features() {
               See what&apos;s handled
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              Drill into the classified inbox. 24 emails already taken care
-              of: maintenance confirmations sent, rent questions answered,
-              policy requests approved. Click any category to filter. Every
-              message color-coded so you know what was auto-handled,
-              what&apos;s drafted, what got routed, and what&apos;s flagged
-              for you.
+              Drill into the classified inbox. 8 emails taken care of
+              overnight: tenant FAQs answered, owner statements resent,
+              routine notifications logged. Click any category to filter.
+              Every message color-coded so you know what was auto-handled,
+              what&apos;s drafted, and what got routed to your team.
             </p>
           </div>
 
