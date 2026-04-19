@@ -808,11 +808,11 @@ function Features() {
           className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-32"
         >
           <div className="order-2 md:order-1 bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
-            <div className="px-6 pt-5 pb-3 border-b border-stone-100">
-              <div className="flex items-center justify-between">
-                <p className="text-[13px] font-bold text-stone-900 tracking-tight">Morning Digest</p>
-                <span className="text-[14px] font-mono text-stone-400">April 16, 2026 · 7:00 AM</span>
-              </div>
+            <div className="px-6 pt-5 pb-4 border-b border-stone-100">
+              <p className="text-[20px] font-extrabold tracking-tight text-stone-900 leading-tight">
+                Good morning, Fatima
+              </p>
+              <p className="text-[13px] text-stone-400 font-mono mt-1">April 19, 2026 · 7:00 AM</p>
             </div>
 
             <div className="px-6 py-4 border-b border-stone-100">
@@ -835,7 +835,10 @@ function Features() {
 
               <div className="space-y-4">
                 <div>
-                  <p className="text-[13px] font-bold text-stone-800 mb-1.5">Handled (24 emails)</p>
+                  <div className="flex items-baseline justify-between mb-1.5">
+                    <p className="text-[13px] font-bold text-stone-800">Handled (24 emails)</p>
+                    <button className="text-[12px] text-accent font-semibold hover:underline">View all →</button>
+                  </div>
                   <ul className="space-y-1 ml-2">
                     <li className="text-[13px] text-stone-600 leading-relaxed">12 rent receipt confirmations sent</li>
                     <li className="text-[13px] text-stone-600 leading-relaxed">8 maintenance request acknowledgments sent</li>
@@ -845,7 +848,10 @@ function Features() {
                 </div>
 
                 <div>
-                  <p className="text-[13px] font-bold text-stone-800 mb-1.5">Drafted for your review (12 emails)</p>
+                  <div className="flex items-baseline justify-between mb-1.5">
+                    <p className="text-[13px] font-bold text-stone-800">Drafted for your review (12 emails)</p>
+                    <button className="text-[12px] text-accent font-semibold hover:underline">View all →</button>
+                  </div>
                   <ul className="space-y-1 ml-2">
                     <li className="text-[13px] text-stone-600 leading-relaxed">Lease renewal counter-offer at 901 Alhambra (M. Johnson proposed $1,600 vs your $1,700)</li>
                     <li className="text-[13px] text-stone-600 leading-relaxed">Late rent payment plan request from T. Reeves ($800 now, $800 by 15th)</li>
@@ -855,7 +861,10 @@ function Features() {
                 </div>
 
                 <div>
-                  <p className="text-[13px] font-bold text-stone-800 mb-1.5">Routed to your team (9 emails)</p>
+                  <div className="flex items-baseline justify-between mb-1.5">
+                    <p className="text-[13px] font-bold text-stone-800">Routed to your team (9 emails)</p>
+                    <button className="text-[12px] text-accent font-semibold hover:underline">View all →</button>
+                  </div>
                   <ul className="space-y-1 ml-2">
                     <li className="text-[13px] text-stone-600 leading-relaxed">4 to Maria (bookkeeping)</li>
                     <li className="text-[13px] text-stone-600 leading-relaxed">3 to Carlos (maintenance)</li>
@@ -864,7 +873,10 @@ function Features() {
                 </div>
 
                 <div>
-                  <p className="text-[13px] font-bold text-stone-800 mb-1.5">Escalated overnight (1 email)</p>
+                  <div className="flex items-baseline justify-between mb-1.5">
+                    <p className="text-[13px] font-bold text-stone-800">Escalated overnight (1 email)</p>
+                    <button className="text-[12px] text-accent font-semibold hover:underline">View all →</button>
+                  </div>
                   <div className="ml-2 flex items-start gap-2 text-[13px]">
                     <span className="font-semibold shrink-0 text-red-600">Emergency:</span>
                     <span className="text-stone-600 leading-relaxed">Water heater at 2205 Northgate. Vendor dispatched 6:14 AM, tenant relocated to Unit 4 temporarily. SMS sent at 6:12 AM.</span>
@@ -877,19 +889,19 @@ function Features() {
           <div className="order-1 md:order-2">
             <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">7:00 AM</p>
             <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
-              Open your digest
+              Open your dashboard
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              You sit down, open one email. The system ran 24/7 while you
-              were away. Emergencies escalated via SMS the moment they came
-              in. Routine emails auto-responded in real time. Everything
-              else classified, drafted, or routed.
+              You open your dashboard. The system ran 24/7 while you were
+              away. Emergencies escalated via SMS the moment they came in.
+              Routine emails auto-responded in real time. Everything else
+              classified, drafted, or routed.
             </p>
             <p className="text-lg text-stone-400 mt-4 leading-relaxed font-light max-w-lg">
-              This is the full recap. Nothing was filtered or ranked for
-              you. You see everything the system did overnight so you can
-              verify the work, catch any errors, and decide where to spend
-              your morning.
+              The summary shows what happened. Click into any section to
+              see exactly what was done. Nothing is filtered or hidden so
+              you can verify the work, catch any errors, and decide where
+              to spend your morning.
             </p>
           </div>
         </motion.div>
