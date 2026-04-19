@@ -912,15 +912,8 @@ function Features() {
               Never forget a follow-up
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              Every email that creates an action item becomes a task. A
-              vendor promises a quote Friday, it becomes a task. An owner
-              asks about refinancing, it becomes a task. A housing
-              authority sets a deadline, it becomes a task with that
-              deadline.
-            </p>
-            <p className="text-lg text-stone-400 mt-4 leading-relaxed font-light max-w-lg">
-              You see them all in one place, with the email they came
-              from one click away. Mark complete as you go.
+              Every email that creates an action item becomes a task. You
+              see them all in one place, with the email they came from.
             </p>
           </div>
 
