@@ -764,8 +764,7 @@ function Features() {
           </div>
 
           <div className="order-1 md:order-2">
-            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">7:00 AM</p>
-            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
+            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 leading-[0.92]">
               Open your dashboard
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
@@ -794,8 +793,7 @@ function Features() {
           className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-32"
         >
           <div>
-            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">Overnight</p>
-            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
+            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 leading-[0.92]">
               See what&apos;s handled
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
@@ -824,8 +822,7 @@ function Features() {
           className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-32"
         >
           <div className="order-1 md:order-2">
-            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">By 7 AM</p>
-            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
+            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 leading-[0.92]">
               Approve the drafts
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
@@ -918,8 +915,7 @@ function Features() {
           className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center"
         >
           <div>
-            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">Throughout the day</p>
-            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
+            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 leading-[0.92]">
               Never forget a follow-up
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
