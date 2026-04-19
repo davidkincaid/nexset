@@ -768,16 +768,14 @@ function Features() {
               Open your dashboard
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              You open your dashboard. The system ran 24/7 while you were
-              away. Emergencies escalated via SMS the moment they came in.
-              Routine emails auto-responded in real time. Everything else
-              classified, drafted, or routed.
+              You start your morning with a dashboard, not an inbox. The
+              system ran 24/7 while you were away, triaging the overnight
+              email so you don&apos;t have to.
             </p>
             <p className="text-lg text-stone-400 mt-4 leading-relaxed font-light max-w-lg">
-              The summary shows what happened. Click into any section to
-              drill in and see exactly what was done. Nothing is filtered
-              or hidden so you can verify the work, catch any errors, and
-              decide where to spend your morning.
+              Drill into any section when you want the detail. Nothing is
+              filtered or hidden, so you can verify the work, catch errors,
+              and decide where to spend your morning.
             </p>
           </div>
         </motion.div>
