@@ -912,8 +912,8 @@ function Features() {
               Never forget a follow-up
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              Every email that creates an action item becomes a task. You
-              see them all in one place, with the email they came from.
+              Follow-ups live here instead of in your head. The email each
+              one came from is one click away.
             </p>
           </div>
 
