@@ -288,19 +288,19 @@ type InboxEmail = {
 };
 
 const inboxEmails: InboxEmail[] = [
-  { from: "D. Patel", subject: "Can I install a Ring doorbell?", time: "7:24 AM", category: "auto-handled", preview: "Auto-replied: approved per modification policy, no drilling into stucco" },
   { from: "M. Brooks", subject: "Garage door won't close", time: "6:55 AM", category: "auto-handled", preview: "Auto-replied: work order created, vendor dispatched within 24hrs" },
   { from: "R. Chen", subject: "When is my March distribution?", time: "6:48 AM", category: "auto-handled", preview: "Auto-replied: $12,000 processed March 28, arrives in 1-2 business days" },
   { from: "A. Brennan", subject: "Locked out — can someone let me in?", time: "6:30 AM", category: "auto-handled", preview: "Auto-replied: locksmith dispatched, after-hours lockout fee per lease Section 9.1" },
+  { from: "D. Patel", subject: "Can I install a Ring doorbell?", time: "6:24 AM", category: "auto-handled", preview: "Auto-replied: approved per modification policy, no drilling into stucco" },
   { from: "S. Delgado", subject: "What's the move-out process?", time: "5:58 AM", category: "auto-handled", preview: "Auto-replied: 30-day written notice, move-out inspection checklist attached" },
-  { from: "T. Reeves", subject: "Rent will be late this month", time: "7:42 AM", category: "drafted", preview: "Draft ready — payment plan language, references lease clause 4.2", thread: "Thread: 3 messages" },
-  { from: "M. Johnson", subject: "RE: Lease renewal — 901 Alhambra A", time: "7:31 AM", category: "drafted", preview: "Draft ready — counter-offer response at $1,650, split the difference", thread: "Thread: 6 messages" },
-  { from: "R. Chen", subject: "Why is there a $1,200 charge on my statement?", time: "7:10 AM", category: "drafted", preview: "Draft ready — explains security deposit held in trust, not part of disbursement", thread: "Thread: 2 messages" },
   { from: "K. Pham", subject: "Requesting early lease termination", time: "6:44 AM", category: "drafted", preview: "Draft ready — early termination clause 12.3, two months notice + fee", thread: "Thread: 4 messages" },
+  { from: "T. Reeves", subject: "Rent will be late this month", time: "6:42 AM", category: "drafted", preview: "Draft ready — payment plan language, references lease clause 4.2", thread: "Thread: 3 messages" },
+  { from: "M. Johnson", subject: "RE: Lease renewal — 901 Alhambra A", time: "6:35 AM", category: "drafted", preview: "Draft ready — counter-offer response at $1,650, split the difference", thread: "Thread: 6 messages" },
   { from: "J. Whitmore", subject: "Neighbor's dog barking all night", time: "6:20 AM", category: "drafted", preview: "Draft ready — noise complaint acknowledgment, references pet policy and next steps", thread: "Thread: 5 messages" },
-  { from: "Ace Plumbing", subject: "Invoice #4821 — 2847 Freeport water heater", time: "7:38 AM", category: "routed", preview: "Sent to Maria (bookkeeping VA) with AppFolio work order match" },
-  { from: "State Farm", subject: "Policy renewal — 5540 Sky Pkwy", time: "7:18 AM", category: "routed", preview: "Sent to Jessica (admin VA) — premium comparison flagged (+12%)" },
+  { from: "R. Chen", subject: "Why is there a $1,200 charge on my statement?", time: "6:10 AM", category: "drafted", preview: "Draft ready — explains security deposit held in trust, not part of disbursement", thread: "Thread: 2 messages" },
   { from: "Pro Handyman Svc", subject: "Scheduling confirmation — 3312 Stockton", time: "6:40 AM", category: "routed", preview: "Sent to Carlos (maintenance VA) — confirm tenant access window" },
+  { from: "Ace Plumbing", subject: "Invoice #4821 — 2847 Freeport water heater", time: "6:38 AM", category: "routed", preview: "Sent to Maria (bookkeeping VA) with AppFolio work order match" },
+  { from: "State Farm", subject: "Policy renewal — 5540 Sky Pkwy", time: "6:18 AM", category: "routed", preview: "Sent to Jessica (admin VA) — premium comparison flagged (+12%)" },
   { from: "N. Udoh", subject: "Application submitted — 1088 Fulton Ave", time: "6:15 AM", category: "routed", preview: "Sent to Leasing VA — run screening, verify employment, check rental history" },
   { from: "City of Sacramento", subject: "Code compliance notice — 2847 Freeport", time: "5:45 AM", category: "routed", preview: "Sent to Jessica (admin VA) — respond by April 28, sidewalk vegetation issue" },
   { from: "2205 Northgate tenant", subject: "Water heater leaking badly", time: "6:12 AM", category: "owner", preview: "Emergency detected — vendor auto-dispatched, you were texted immediately", thread: "Thread: 7 messages — vendor + tenant" },
@@ -730,26 +730,6 @@ function Features() {
           </div>
 
           <div className="bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
-            {/* Auto-response example */}
-            <div className="px-6 pt-5 pb-3 border-b border-stone-100">
-              <div className="flex items-center gap-2">
-                <span className="text-[11px] font-semibold px-1.5 py-0.5 rounded-md bg-emerald-100 text-emerald-700">Auto-handled</span>
-                <p className="text-[13px] text-stone-400">Responded in 4 seconds</p>
-              </div>
-            </div>
-            <div className="px-6 py-4 border-b border-stone-100">
-              <p className="text-[13px] text-stone-400 mb-1">From: D. Patel — 4401 Marconi Ave</p>
-              <p className="text-[14px] font-semibold text-stone-800">Can I install a Ring doorbell?</p>
-              <p className="text-[14px] text-stone-500 mt-2 leading-relaxed">Hey, I wanted to put up a Ring doorbell on my front door. Do I need permission for that? Thanks, Deepak</p>
-            </div>
-            <div className="px-6 py-4 bg-emerald-50/30">
-              <p className="text-[13px] text-emerald-700 font-semibold mb-2">Auto-response sent</p>
-              <p className="text-[14px] text-stone-600 leading-relaxed">Hi Deepak, you&apos;re welcome to install a Ring doorbell. Per your lease modification policy, we just ask that you avoid drilling into stucco and use the existing wiring if possible. No formal approval needed. Let us know if you need anything else!</p>
-              <p className="text-[13px] text-stone-400 mt-3 font-mono">Matched: modification-policy-minor-exterior</p>
-            </div>
-
-            <div className="border-t border-stone-100" />
-
             {/* Draft example with expandable thread */}
             <EmailWithThread
               badge={{ label: "Drafted for review", classes: "bg-blue-100 text-blue-700" }}
