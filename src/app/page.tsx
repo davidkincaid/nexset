@@ -912,8 +912,9 @@ function Features() {
               Never forget a follow-up
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              Follow-ups live here instead of in your head. The email each
-              one came from is one click away.
+              Nothing promised in email gets dropped. The system tracks
+              what&apos;s still open and keeps the source thread one click
+              away.
             </p>
           </div>
 
