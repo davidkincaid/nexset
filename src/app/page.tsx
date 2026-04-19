@@ -290,19 +290,18 @@ type InboxEmail = {
 const inboxEmails: InboxEmail[] = [
   { from: "ADP Payroll", subject: "Bi-weekly payroll report, pay period ending April 12", time: "6:58 AM", category: "routed", preview: "Sent to Maria (bookkeeping), review and file" },
   { from: "L. Gomez", subject: "Quick question about the pet policy", time: "6:55 AM", category: "auto-handled", preview: "Auto-replied: pet policy PDF sent, one dog under 30lbs allowed with deposit" },
+  { from: "J. Rivera", subject: "What are your office hours?", time: "6:47 AM", category: "auto-handled", preview: "Auto-replied: 9am-5pm M-F, leasing line 916-555-0142, tours by appointment" },
   { from: "Wells Fargo Business", subject: "Deposit notification, $47,320 to operating account", time: "6:52 AM", category: "routed", preview: "Sent to Maria (bookkeeping), reconcile with April rent roll" },
   { from: "M. Johnson", subject: "RE: Lease renewal at 901 Alhambra A", time: "6:50 AM", category: "drafted", preview: "Draft ready, counter-offer at $1,650 between their $1,600 and your $1,700", thread: "Thread: 6 messages" },
   { from: "M. Nguyen", subject: "Can't log into the tenant portal", time: "6:48 AM", category: "auto-handled", preview: "Auto-replied: password reset link sent, portal walkthrough included" },
   { from: "K. Patel", subject: "What's the $875 plumbing charge at 3312 Stockton?", time: "6:42 AM", category: "drafted", preview: "Draft ready, line-by-line breakdown of March plumbing work", thread: "Thread: 3 messages" },
   { from: "Pro Handyman Svc", subject: "Scheduling confirmation, 3312 Stockton", time: "6:40 AM", category: "routed", preview: "Sent to Carlos (maintenance), confirm tenant access window" },
   { from: "HACLA", subject: "Recertification paperwork request, 2847 Freeport", time: "6:35 AM", category: "drafted", preview: "Draft ready, forms being prepared, submission targeted for April 26", thread: "Thread: 2 messages" },
-  { from: "K. Patel", subject: "Can you resend March owner statement?", time: "6:30 AM", category: "auto-handled", preview: "Auto-replied: PDF regenerated, also available in owner portal" },
+  { from: "Bell Plumbing Supply", subject: "Invoice received, follow-up pending", time: "6:30 AM", category: "auto-handled", preview: "Auto-acknowledged: email logged, routing for review this week" },
   { from: "State Farm", subject: "Renewal review, 5540 Sky Pkwy", time: "6:28 AM", category: "drafted", preview: "Draft ready, 3 competing quotes pulled for comparison at +12% ask", thread: "Thread: 4 messages" },
-  { from: "R. Singh", subject: "When is my next distribution?", time: "6:24 AM", category: "auto-handled", preview: "Auto-replied: next distribution April 28, 2-3 day ACH" },
   { from: "State Farm", subject: "Policy renewal, 5540 Sky Pkwy", time: "6:20 AM", category: "routed", preview: "Sent to Jessica (admin), premium comparison flagged at +12%" },
   { from: "HACLA", subject: "Recertification docs received, 2847 Freeport", time: "6:15 AM", category: "routed", preview: "Sent to Jessica (admin), file in tenant folder" },
-  { from: "ADP Payroll", subject: "Onboarding question, new maintenance tech", time: "6:10 AM", category: "drafted", preview: "Draft ready, payroll setup info and IRS forms attached", thread: "Thread: 2 messages" },
-  { from: "PG&E", subject: "Service transfer confirmation, 901 Alhambra Blvd C", time: "5:58 AM", category: "auto-handled", preview: "Auto-logged: transfer effective April 15, tenant name updated in records" },
+  { from: "S. Ortega", subject: "Can property rent to under-62 residents?", time: "6:10 AM", category: "drafted", preview: "Draft ready, age restriction policy clarified with Fair Housing context", thread: "Thread: 2 messages" },
   { from: "City of Sacramento", subject: "Code compliance notice, 2847 Freeport", time: "5:45 AM", category: "routed", preview: "Sent to Jessica (admin), respond by April 28, sidewalk vegetation issue" },
 ];
 
@@ -313,9 +312,9 @@ const categoryConfig: Record<string, { label: string; badgeColor: string }> = {
 };
 
 const categoryCounts: Record<string, number> = {
-  "auto-handled": 8,
-  "drafted": 18,
-  "routed": 6,
+  "auto-handled": 4,
+  "drafted": 20,
+  "routed": 8,
 };
 
 function InboxDemo() {
@@ -422,12 +421,14 @@ function EmailWithThread({
   badgeMeta,
   priorMessages,
   current,
+  contextItems,
   response,
 }: {
   badge: { label: string; classes: string };
   badgeMeta: string;
   priorMessages: PriorMessage[];
   current: { from: string; subject: string; body: string };
+  contextItems?: string[];
   response?: {
     tone: "draft" | "decision";
     label: string;
@@ -493,6 +494,20 @@ function EmailWithThread({
         <p className="text-[14px] font-semibold text-stone-800">{current.subject}</p>
         <p className="text-[14px] text-stone-500 mt-2 leading-relaxed">{current.body}</p>
       </div>
+
+      {contextItems && contextItems.length > 0 && (
+        <div className="px-6 py-3 bg-stone-50/60 border-b border-stone-100">
+          <p className="text-[11px] uppercase tracking-[0.15em] text-stone-500 font-semibold mb-2">Context pulled</p>
+          <ul className="space-y-1 ml-2">
+            {contextItems.map((item, i) => (
+              <li key={i} className="text-[13px] text-stone-600 leading-relaxed flex items-start gap-2">
+                <span className="text-stone-400 shrink-0">·</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {response && (
         <div className={`px-6 py-4 ${responseBg}`}>
@@ -689,9 +704,9 @@ function Features() {
             <div className="px-6 py-4 border-b border-stone-100">
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { label: "Auto-handled", value: "8", color: "text-emerald-600" },
-                  { label: "Drafted", value: "18", color: "text-blue-600" },
-                  { label: "Routed", value: "6", color: "text-amber-600" },
+                  { label: "Auto-handled", value: "4", color: "text-emerald-600" },
+                  { label: "Drafted", value: "20", color: "text-blue-600" },
+                  { label: "Routed", value: "8", color: "text-amber-600" },
                 ].map((s) => (
                   <div key={s.label} className="bg-stone-50 rounded-lg p-2.5 text-center">
                     <p className={`text-[15px] font-bold font-mono ${s.color}`}>{s.value}</p>
@@ -707,42 +722,39 @@ function Features() {
               <div className="space-y-4">
                 <div>
                   <div className="flex items-baseline justify-between mb-1.5">
-                    <p className="text-[13px] font-bold text-stone-800">Handled (8 emails)</p>
+                    <p className="text-[13px] font-bold text-stone-800">Handled (4 emails)</p>
                     <button className="text-[12px] text-accent font-semibold hover:underline">View all →</button>
                   </div>
                   <ul className="space-y-1 ml-2">
                     <li className="text-[13px] text-stone-600 leading-relaxed">2 tenant FAQ responses sent (pet policy, portal access help)</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">2 owner statement requests fulfilled (K. Patel March resend, R. Singh next draw date)</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">1 ADP payroll notification acknowledged and routed</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">1 banking deposit confirmation logged</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">1 insurance broker renewal reminder acknowledged and flagged</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">1 utility company service confirmation logged</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">1 office hours confirmation sent to prospect</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">1 &quot;email received&quot; acknowledgment sent to vendor</li>
                   </ul>
                 </div>
 
                 <div>
                   <div className="flex items-baseline justify-between mb-1.5">
-                    <p className="text-[13px] font-bold text-stone-800">Drafted for your review (18 emails)</p>
+                    <p className="text-[13px] font-bold text-stone-800">Drafted for your review (20 emails)</p>
                     <button className="text-[12px] text-accent font-semibold hover:underline">View all →</button>
                   </div>
                   <ul className="space-y-1 ml-2">
                     <li className="text-[13px] text-stone-600 leading-relaxed">Lease renewal counter-offer at 901 Alhambra (M. Johnson proposed $1,600 vs your $1,700)</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">Housing authority recertification request, tenant at 2847 Freeport, due April 28</li>
                     <li className="text-[13px] text-stone-600 leading-relaxed">Owner question about Q1 expense breakdown from K. Patel (unusual plumbing cost at 3312 Stockton)</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">HACLA recertification paperwork request, tenant at 2847 Freeport, due April 28</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">State Farm insurance renewal at 5540 Sky Pkwy (+12%, $220/yr increase), flagged for your review</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">ADP onboarding question about new maintenance tech</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">State Farm insurance renewal at 5540 Sky Pkwy (+12%, $220/yr increase)</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">Age restriction question from prospect (can property rent to under-62 residents?)</li>
                   </ul>
                 </div>
 
                 <div>
                   <div className="flex items-baseline justify-between mb-1.5">
-                    <p className="text-[13px] font-bold text-stone-800">Routed to your team (6 emails)</p>
+                    <p className="text-[13px] font-bold text-stone-800">Routed to your team (8 emails)</p>
                     <button className="text-[12px] text-accent font-semibold hover:underline">View all →</button>
                   </div>
                   <ul className="space-y-1 ml-2">
-                    <li className="text-[13px] text-stone-600 leading-relaxed">2 to Maria (bookkeeping): payroll report, deposit notification</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">3 to Jessica (admin): insurance policy renewal, recertification filing, code compliance notice</li>
-                    <li className="text-[13px] text-stone-600 leading-relaxed">1 to Carlos (maintenance): handyman scheduling confirmation</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">3 to Maria (bookkeeping): payroll report, deposit notification, vendor invoice</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">3 to Jessica (admin): code compliance notice, recertification filing, ADP question</li>
+                    <li className="text-[13px] text-stone-600 leading-relaxed">2 to Carlos (maintenance): handyman scheduling, vendor follow-up</li>
                   </ul>
                 </div>
 
@@ -787,11 +799,10 @@ function Features() {
               See what&apos;s handled
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              Drill into the classified inbox. 8 emails taken care of
-              overnight: tenant FAQs answered, owner statements resent,
-              routine notifications logged. Click any category to filter.
-              Every message color-coded so you know what was auto-handled,
-              what&apos;s drafted, and what got routed to your team.
+              Drill into the classified inbox. Only 4 emails qualify for
+              auto-handling overnight. Most of what lands in a PM owner&apos;s
+              inbox requires research, so the bulk sits in Drafted with a
+              first pass already done. Click any category to filter.
             </p>
           </div>
 
@@ -815,13 +826,15 @@ function Features() {
               Approve the drafts
             </h3>
             <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              The emails that need your judgment come with drafted responses
-              in your voice, with the right lease clauses, payment terms, and
-              context pulled in. The system reads the full thread, not just
-              the latest message, so drafts have prior context and flagged
-              emails show the full conversation before you decide what to do.
-              Read it, hit approve, or make a quick edit. Nothing sends
-              without you.
+              Every complex email gets a first pass before you see it. The
+              system pulls the prior thread for context, drafts a response
+              in your voice, and surfaces the relevant research: past
+              emails on the same topic, related property details,
+              regulatory context when it applies.
+            </p>
+            <p className="text-lg text-stone-400 mt-4 leading-relaxed font-light max-w-lg">
+              You&apos;re no longer composing from scratch. You&apos;re
+              reviewing and approving.
             </p>
           </div>
 
@@ -847,6 +860,11 @@ function Features() {
                 subject: "Rent will be late this month",
                 body: "Hi, I had an unexpected car repair and I won't be able to pay the full $1,600 until the 15th. Can I do a partial payment now?",
               }}
+              contextItems={[
+                "6 months of payment history across past emails",
+                "Similar payment plan response sent in February 2026",
+                "Lease excerpt quoted in prior thread (Section 4.2)",
+              ]}
               response={{
                 tone: "draft",
                 label: "Draft response",
@@ -883,6 +901,11 @@ function Features() {
                 subject: "Why am I paying for that plumbing repair?",
                 body: "I thought tenant damage wasn't on me. Can you walk me through how the owner versus tenant responsibility works here? This is the third repair charge this quarter and I want to understand the pattern.",
               }}
+              contextItems={[
+                "Last 3 owner statements emailed to M. Johnson",
+                "Ace Plumbing invoice attachment from March",
+                "2 similar past repair allocation threads",
+              ]}
               response={{
                 tone: "decision",
                 label: "Needs your decision",
@@ -920,6 +943,69 @@ function Features() {
         </motion.div>
         </ScrollFocus>
 
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   ROADMAP — Planned capabilities beyond v1
+   ═══════════════════════════════════════════════════════ */
+
+const roadmapCards = [
+  {
+    heading: "Phone handling",
+    body: "Simple questions answered by automated voice (unit availability, waiting list status, office hours). Complex calls routed to the right team member via SMS. Emergencies escalated the same way email emergencies are.",
+  },
+  {
+    heading: "PMS integration",
+    body: "Direct integration with Realpage, AppFolio, Buildium, and other property management software. Drafts can pull live data (rent ledgers, statements, tenant history) so responses are complete before you review them.",
+  },
+  {
+    heading: "Task tool sync",
+    body: "Push tasks directly into ClickUp, Monday, Asana, or Notion. Your team sees tasks in the tool they already use, not another dashboard.",
+  },
+];
+
+function Roadmap() {
+  return (
+    <section className="py-32 bg-[#FAFAF7] border-t border-stone-200/60">
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="w-8 h-[1.5px] bg-accent mb-6" />
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tighter text-stone-900 leading-[0.92]">
+            On the roadmap
+          </h2>
+          <p className="text-lg text-stone-400 mt-4 max-w-lg font-light leading-relaxed">
+            Executive Inbox v1 handles the email side of your communication.
+            Here&apos;s where we&apos;re headed next.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {roadmapCards.map((card, i) => (
+            <motion.div
+              key={card.heading}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+              className="bg-white rounded-[1.5rem] border border-stone-200/60 p-6 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)]"
+            >
+              <h3 className="text-xl font-extrabold tracking-tight text-stone-900 mb-3">
+                {card.heading}
+              </h3>
+              <p className="text-[14px] text-stone-500 leading-relaxed font-light">
+                {card.body}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -1028,6 +1114,7 @@ export default function Home() {
       <main className="relative z-10">
         <Hero />
         <Features />
+        <Roadmap />
         <BookDemo />
       </main>
       <Footer />
