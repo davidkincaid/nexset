@@ -949,69 +949,6 @@ function Features() {
 }
 
 /* ═══════════════════════════════════════════════════════
-   ROADMAP — Planned capabilities beyond v1
-   ═══════════════════════════════════════════════════════ */
-
-const roadmapCards = [
-  {
-    heading: "Phone handling",
-    body: "Simple questions answered by automated voice (unit availability, waiting list status, office hours). Complex calls routed to the right team member via SMS. Emergencies escalated the same way email emergencies are.",
-  },
-  {
-    heading: "PMS integration",
-    body: "Direct integration with Realpage, AppFolio, Buildium, and other property management software. Drafts can pull live data (rent ledgers, statements, tenant history) so responses are complete before you review them.",
-  },
-  {
-    heading: "Task tool sync",
-    body: "Push tasks directly into ClickUp, Monday, Asana, or Notion. Your team sees tasks in the tool they already use, not another dashboard.",
-  },
-];
-
-function Roadmap() {
-  return (
-    <section className="py-32 bg-[#FAFAF7] border-t border-stone-200/60">
-      <div className="max-w-7xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <div className="w-8 h-[1.5px] bg-accent mb-6" />
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tighter text-stone-900 leading-[0.92]">
-            On the roadmap
-          </h2>
-          <p className="text-lg text-stone-400 mt-4 max-w-lg font-light leading-relaxed">
-            Executive Inbox v1 handles the email side of your communication.
-            Here&apos;s where we&apos;re headed next.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {roadmapCards.map((card, i) => (
-            <motion.div
-              key={card.heading}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08, duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
-              className="bg-white rounded-[1.5rem] border border-stone-200/60 p-6 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)]"
-            >
-              <h3 className="text-xl font-extrabold tracking-tight text-stone-900 mb-3">
-                {card.heading}
-              </h3>
-              <p className="text-[14px] text-stone-500 leading-relaxed font-light">
-                {card.body}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════
    BOOK A DEMO
    ═══════════════════════════════════════════════════════ */
 
@@ -1114,7 +1051,6 @@ export default function Home() {
       <main className="relative z-10">
         <Hero />
         <Features />
-        <Roadmap />
         <BookDemo />
       </main>
       <Footer />
