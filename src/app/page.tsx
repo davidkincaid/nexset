@@ -669,7 +669,7 @@ function Features() {
             Every email. Classified.<br />Handled. Summarized.
           </h2>
           <p className="text-lg text-stone-400 mt-4 max-w-lg font-light leading-relaxed">
-            You&apos;re managing 200-600 doors and fielding 200+ emails a day.
+            You&apos;re managing 400+ doors and fielding 100+ emails a day.
             Even with a team, the inbox still lands on you. We handle the
             repetitive volume so you can spend your time where it counts.
           </p>
