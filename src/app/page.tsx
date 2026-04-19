@@ -675,130 +675,7 @@ function Features() {
           </p>
         </motion.div>
 
-        {/* 1 — See what's handled (visual left, text right) */}
-        <ScrollFocus>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-32"
-        >
-          <div className="order-2 md:order-1">
-            <InboxDemo />
-          </div>
-
-          <div className="order-1 md:order-2">
-            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">Overnight</p>
-            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
-              See what&apos;s handled
-            </h3>
-            <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              Scan the classified inbox. 24 emails already taken care of:
-              maintenance confirmations sent, rent questions answered, policy
-              requests approved. Click any category to filter. Every message
-              color-coded so you know what was auto-handled, what&apos;s
-              drafted, what got routed, and what&apos;s flagged for you.
-            </p>
-          </div>
-        </motion.div>
-        </ScrollFocus>
-
-        {/* 2 — Approve the drafts (text left, visual right) */}
-        <ScrollFocus>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-32"
-        >
-          <div>
-            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">By 7 AM</p>
-            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
-              Approve the drafts
-            </h3>
-            <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
-              The emails that need your judgment come with drafted responses
-              in your voice, with the right lease clauses, payment terms, and
-              context pulled in. The system reads the full thread, not just
-              the latest message, so drafts have prior context and flagged
-              emails show the full conversation before you decide what to do.
-              Read it, hit approve, or make a quick edit. Nothing sends
-              without you.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
-            {/* Draft example with expandable thread */}
-            <EmailWithThread
-              badge={{ label: "Drafted for review", classes: "bg-blue-100 text-blue-700" }}
-              badgeMeta="Waiting on your approval"
-              priorMessages={[
-                {
-                  from: "T. Reeves",
-                  time: "Apr 15, 9:18 AM",
-                  body: "Hey, just a heads up that I might be a few days late with rent this month. Had a car issue come up. I'll know more by Friday.",
-                },
-                {
-                  from: "You",
-                  time: "Apr 15, 11:42 AM",
-                  body: "Thanks for the heads up Tanya. Let me know once you have a clearer picture and we can figure out next steps.",
-                },
-              ]}
-              current={{
-                from: "T. Reeves, 901 Alhambra Blvd B",
-                subject: "Rent will be late this month",
-                body: "Hi, I had an unexpected car repair and I won't be able to pay the full $1,600 until the 15th. Can I do a partial payment now?",
-              }}
-              response={{
-                tone: "draft",
-                label: "Draft response",
-                body: "Hi Tanya, thank you for letting us know ahead of time. Per your lease (Section 4.2), partial payments can be arranged with written agreement. I can accept $800 now with the remaining $800 due by the 15th. Please confirm and I'll send over the payment plan letter. Let me know if you have any questions.",
-                actions: { primary: "Approve & Send", secondary: "Edit" },
-              }}
-            />
-
-            <div className="border-t border-stone-100" />
-
-            {/* Owner-flagged example with expandable thread */}
-            <EmailWithThread
-              badge={{ label: "Owner-flagged", classes: "bg-red-100 text-red-700" }}
-              badgeMeta="Needs your decision"
-              priorMessages={[
-                {
-                  from: "M. Johnson",
-                  time: "Apr 14, 4:12 PM",
-                  body: "Hi, I see a charge on my owner statement for $875 for plumbing at 901 Alhambra A. What was this for?",
-                },
-                {
-                  from: "You",
-                  time: "Apr 15, 9:30 AM",
-                  body: "Hi Marcus, that was for a kitchen sink trap replacement after the tenant reported a leak two weeks ago. I'll forward you the invoice.",
-                },
-                {
-                  from: "Ace Plumbing (forwarded)",
-                  time: "Apr 15, 10:15 AM",
-                  body: "Invoice 4798: kitchen sink p-trap leak, replaced trap and valve assembly. Standard service call plus parts. $875.00.",
-                },
-              ]}
-              current={{
-                from: "M. Johnson, owner of 901 Alhambra A",
-                subject: "Why am I paying for that plumbing repair?",
-                body: "I thought tenant damage wasn't on me. Can you walk me through how the owner versus tenant responsibility works here? This is the third repair charge this quarter and I want to understand the pattern.",
-              }}
-              response={{
-                tone: "decision",
-                label: "Needs your decision",
-                body: "Owner is disputing a $875 plumbing expense. Lease assigns normal wear-and-tear repairs to owner, tenant-caused damage to tenant. Plumber notes do not indicate tenant fault. You decide whether to absorb, recharge, or split.",
-                actions: { primary: "Compose reply", secondary: "Snooze" },
-              }}
-            />
-          </div>
-        </motion.div>
-        </ScrollFocus>
-
-        {/* 3 — Open your digest (visual left, text right) */}
+        {/* 1 — Open your dashboard (visual left, text right) */}
         <ScrollFocus>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -899,10 +776,134 @@ function Features() {
             </p>
             <p className="text-lg text-stone-400 mt-4 leading-relaxed font-light max-w-lg">
               The summary shows what happened. Click into any section to
-              see exactly what was done. Nothing is filtered or hidden so
-              you can verify the work, catch any errors, and decide where
-              to spend your morning.
+              drill in and see exactly what was done. Nothing is filtered
+              or hidden so you can verify the work, catch any errors, and
+              decide where to spend your morning.
             </p>
+          </div>
+        </motion.div>
+        </ScrollFocus>
+
+        {/* 2 — See what's handled (visual right, text left) */}
+        <ScrollFocus>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-32"
+        >
+          <div>
+            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">Overnight</p>
+            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
+              See what&apos;s handled
+            </h3>
+            <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
+              Drill into the classified inbox. 24 emails already taken care
+              of: maintenance confirmations sent, rent questions answered,
+              policy requests approved. Click any category to filter. Every
+              message color-coded so you know what was auto-handled,
+              what&apos;s drafted, what got routed, and what&apos;s flagged
+              for you.
+            </p>
+          </div>
+
+          <div>
+            <InboxDemo />
+          </div>
+        </motion.div>
+        </ScrollFocus>
+
+        {/* 3 — Approve the drafts (visual left, text right) */}
+        <ScrollFocus>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-32"
+        >
+          <div className="order-1 md:order-2">
+            <p className="text-[13px] text-accent uppercase tracking-[0.2em] font-semibold mb-2">By 7 AM</p>
+            <h3 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-stone-900 mt-3 leading-[0.92]">
+              Approve the drafts
+            </h3>
+            <p className="text-lg text-stone-400 mt-6 leading-relaxed font-light max-w-lg">
+              The emails that need your judgment come with drafted responses
+              in your voice, with the right lease clauses, payment terms, and
+              context pulled in. The system reads the full thread, not just
+              the latest message, so drafts have prior context and flagged
+              emails show the full conversation before you decide what to do.
+              Read it, hit approve, or make a quick edit. Nothing sends
+              without you.
+            </p>
+          </div>
+
+          <div className="order-2 md:order-1 bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.06)] overflow-hidden">
+            {/* Draft example with expandable thread */}
+            <EmailWithThread
+              badge={{ label: "Drafted for review", classes: "bg-blue-100 text-blue-700" }}
+              badgeMeta="Waiting on your approval"
+              priorMessages={[
+                {
+                  from: "T. Reeves",
+                  time: "Apr 15, 9:18 AM",
+                  body: "Hey, just a heads up that I might be a few days late with rent this month. Had a car issue come up. I'll know more by Friday.",
+                },
+                {
+                  from: "You",
+                  time: "Apr 15, 11:42 AM",
+                  body: "Thanks for the heads up Tanya. Let me know once you have a clearer picture and we can figure out next steps.",
+                },
+              ]}
+              current={{
+                from: "T. Reeves, 901 Alhambra Blvd B",
+                subject: "Rent will be late this month",
+                body: "Hi, I had an unexpected car repair and I won't be able to pay the full $1,600 until the 15th. Can I do a partial payment now?",
+              }}
+              response={{
+                tone: "draft",
+                label: "Draft response",
+                body: "Hi Tanya, thank you for letting us know ahead of time. Per your lease (Section 4.2), partial payments can be arranged with written agreement. I can accept $800 now with the remaining $800 due by the 15th. Please confirm and I'll send over the payment plan letter. Let me know if you have any questions.",
+                actions: { primary: "Approve & Send", secondary: "Edit" },
+              }}
+            />
+
+            <div className="border-t border-stone-100" />
+
+            {/* Owner-flagged example with expandable thread */}
+            <EmailWithThread
+              badge={{ label: "Owner-flagged", classes: "bg-red-100 text-red-700" }}
+              badgeMeta="Needs your decision"
+              priorMessages={[
+                {
+                  from: "M. Johnson",
+                  time: "Apr 14, 4:12 PM",
+                  body: "Hi, I see a charge on my owner statement for $875 for plumbing at 901 Alhambra A. What was this for?",
+                },
+                {
+                  from: "You",
+                  time: "Apr 15, 9:30 AM",
+                  body: "Hi Marcus, that was for a kitchen sink trap replacement after the tenant reported a leak two weeks ago. I'll forward you the invoice.",
+                },
+                {
+                  from: "Ace Plumbing (forwarded)",
+                  time: "Apr 15, 10:15 AM",
+                  body: "Invoice 4798: kitchen sink p-trap leak, replaced trap and valve assembly. Standard service call plus parts. $875.00.",
+                },
+              ]}
+              current={{
+                from: "M. Johnson, owner of 901 Alhambra A",
+                subject: "Why am I paying for that plumbing repair?",
+                body: "I thought tenant damage wasn't on me. Can you walk me through how the owner versus tenant responsibility works here? This is the third repair charge this quarter and I want to understand the pattern.",
+              }}
+              response={{
+                tone: "decision",
+                label: "Needs your decision",
+                body: "Owner is disputing a $875 plumbing expense. Lease assigns normal wear-and-tear repairs to owner, tenant-caused damage to tenant. Plumber notes do not indicate tenant fault. You decide whether to absorb, recharge, or split.",
+                actions: { primary: "Compose reply", secondary: "Snooze" },
+              }}
+            />
           </div>
         </motion.div>
         </ScrollFocus>
